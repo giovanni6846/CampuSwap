@@ -13,7 +13,7 @@ services:
          - PORT=${API_PORT}
          - MONGO_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/campuswap?authSource=admin
       env_file:
-         - .env   
+         - variable_dev.env   
       depends_on:
          - mongo
       command: npm run start:dev
