@@ -5,4 +5,3 @@ dist
 Dockerfile*
 docker-compose*
 npm-debug.log
-.env
