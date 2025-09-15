@@ -1,8 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
-import { User, UserDocument } from './schemas/user.schema';
+
 import { UserResponseDto } from './dto/Find_User_By_Id';
+import { User, UserDocument } from './schemas/user.schema';
 
 @Injectable()
 export class UsersService {
@@ -23,7 +24,6 @@ export class UsersService {
       return this.userModel.find(filter).lean();
    }
 
-
    //Recherche d'un utilisateur par son ID
    async findOne(id: string): Promise<UserResponseDto> {
       //Requête faite ci-dessous
@@ -34,13 +34,8 @@ export class UsersService {
          throw new NotFoundException(`User with id ${id} not found`);
       }
 
-      //Jeu de test pour voir si l'utilisateur, si ce n'est pas la bonne, retourner le DTO avec si request succes, et un message
-      if (doc.name !== 'Alice Dupont') {
-         return { success: false, message: "L'utilisatrice rechercher n'est pas la bonne" };
-      };
-      
       //Si la condition est bonne, alors retourner le DTO avec suces true, message ok et la data récupérer
-      return { success: true, message: "OK", user: doc };
+      return { success: true, message: 'OK TEST', user: doc };
    }
 
    // UPDATE

@@ -1,8 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { FindUserDto } from './dto/Find_User_By_Id';
 import { UsersService } from './user.service';
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
    constructor(private readonly UserService: UsersService) {}
@@ -26,6 +28,13 @@ export class UserController {
    }
 
    @Get(':id')
+   @ApiParam({
+      name: 'id',
+      description: "L'identifiant de l'utilisateur",
+      example: '68c415892862b6fbf1fb8ffc',
+   })
+   @ApiResponse({ status: 200, description: 'Utilisateur trouvé.' })
+   @ApiResponse({ status: 404, description: 'Utilisateur non trouvé.' })
    findOne(@Param() params: FindUserDto) {
       return this.UserService.findOne(params.id);
    }
