@@ -25,7 +25,6 @@ export class User {
 
    @Prop({ required: true })
    IsValidate!: boolean;
-
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -16,6 +16,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { ActivitiesModule } from './activities/activities.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -25,6 +26,7 @@ import { UserModule } from './user/user.module';
          `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@mongo:27017/campuswap?authSource=admin`,
       ),
       UserModule,
+      ActivitiesModule,
    ],
    controllers: [],
    providers: [],

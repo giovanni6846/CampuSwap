@@ -14,14 +14,14 @@ export class Activities {
    @Prop({ Type: Types.ObjectId, required: true })
    user_created!: Types.ObjectId;
 
-   @Prop({required: true})
+   @Prop({ required: true })
    datdeb!: Date;
 
-   @Prop({required: true})
+   @Prop({ required: true })
    datfin!: Date;
 
-   @Prop({required: true})
-   seat?: number;
+   @Prop({ required: true })
+   seat!: number;
 }
 
 export const ActivitiesSchema = SchemaFactory.createForClass(Activities);

@@ -1,30 +1,17 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-import { FindUserDto } from './dto/Find_User_By_Id';
+import { FindUserDto, UserResponseDto } from './dto/Find_User_By_Id';
 import { UsersService } from './user.service';
 
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-   constructor(private readonly UserService: UsersService) {}
-
-   @Post()
-   create(@Body() body: { name: string; age: number }) {
-      return this.UserService.create(body);
-   }
+   constructor(private readonly _UserService: UsersService) {}
 
    @Get()
-   findAll(@Query('skip') skip = '0', @Query('limit') limit = '20') {
-      return this.UserService.findAll(Number(skip), Number(limit));
-   }
-
-   @Get('search')
-   search(@Query('name') name?: string, @Query('minAge') minAge?: string) {
-      const filter: any = {};
-      if (name) filter.name = new RegExp(name, 'i'); // recherche partielle
-      if (minAge) filter.age = { $gte: Number(minAge) };
-      return this.UserService.findByFilter(filter);
+   findAll(@Query('skip') skip = '0', @Query('limit') limit = '20'): Promise<UserResponseDto[]> {
+      return this._UserService.findAll(Number(skip), Number(limit));
    }
 
    @Get(':id')
@@ -35,17 +22,7 @@ export class UserController {
    })
    @ApiResponse({ status: 200, description: 'Utilisateur trouvé.' })
    @ApiResponse({ status: 404, description: 'Utilisateur non trouvé.' })
-   findOne(@Param() params: FindUserDto) {
-      return this.UserService.findOne(params.id);
-   }
-
-   @Patch(':id')
-   update(@Param('id') id: string, @Body() body: Partial<{ name: string; age: number }>) {
-      return this.UserService.update(id, body);
-   }
-
-   @Delete(':id')
-   remove(@Param('id') id: string) {
-      return this.UserService.remove(id);
+   findOne(@Param() params: FindUserDto): Promise<UserResponseDto> {
+      return this._UserService.findOne(params.id);
    }
 }
