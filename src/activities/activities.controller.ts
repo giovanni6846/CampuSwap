@@ -6,6 +6,8 @@ import { ActivityResponseDto, Enter_Activity } from './dto/Find_Activities_By_Id
 import { FindAllActivities } from './dto/find_all_activities';
 import { InscriptionDto } from './dto/inscription';
 import { SearchActivitiesDto } from './dto/search';
+import {DesinscriptionDto} from "./dto/desinscription";
+import {ModerationDto} from "./dto/moderation";
 
 @ApiTags('activities')
 @Controller('activities')
@@ -40,11 +42,41 @@ export class ActivitiesController {
 
    @Post('inscription')
    @ApiBody({ type: InscriptionDto })
+   @ApiResponse({ status: 201, description: 'Inscription réussite'})
+   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiResponse({ status: 401, description: 'Erreur JWT' })
    async inscription(@Body() body: InscriptionDto) {
       return this._ActivitiesService.inscription(
          body.id_user,
          body.id_activities,
          /*body.jwt*/
       );
+   }
+
+   @Post('desinscription')
+   @ApiBody({ type: DesinscriptionDto })
+   @ApiResponse({ status: 201, description: 'Désinscription réussite'})
+   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiResponse({ status: 401, description: 'Erreur JWT' })
+   async desinscription(@Body() body: DesinscriptionDto) {
+       return this._ActivitiesService.desinscription(
+           body.id_user,
+           body.id_activities,
+           /*body.jwt*/
+       )
+   }
+
+   @Post('moderation')
+   @ApiBody({ type: ModerationDto})
+   @ApiResponse({status: 201, description: "Modération de l'activité réussite"})
+   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiResponse({ status: 401, description: 'Erreur JWT' })
+    async moderation(@Body() body: ModerationDto){
+       return this._ActivitiesService.moderation(
+           body.id_user,
+           body.id_activities,
+           body.motif,
+           body.moderation
+       )
    }
 }

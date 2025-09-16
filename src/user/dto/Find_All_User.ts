@@ -17,6 +17,9 @@ export class UserAllResponseDTO {
    isBlock!: boolean;
 
    @ApiProperty({})
+   isAdmin!: boolean;
+
+   @ApiProperty({})
    activities!: string[];
 
    @ApiProperty({})

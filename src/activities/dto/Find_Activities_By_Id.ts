@@ -1,10 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import {IsMongoId, IsNotEmpty, IsString} from 'class-validator';
 import { Types } from 'mongoose';
 
 export class Enter_Activity {
    @ApiProperty({ example: '68c4158f2862b6fbf1fb9000' })
    @IsString()
+   @IsNotEmpty()
+   @IsMongoId()
    id!: string;
 }
 

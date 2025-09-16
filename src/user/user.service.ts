@@ -23,7 +23,7 @@ export class UsersService {
       const doc = await this._userModel.findById(id).lean<UserResponseDto>();
 
       if (!doc) {
-         throw new NotFoundException(`User with id ${id} not found`);
+         throw new NotFoundException(`Utilisateur inexistant`);
       }
       return doc;
    }
@@ -32,7 +32,7 @@ export class UsersService {
       const doc = await this._userModel.findById(id).lean<UserAllResponseDTO>();
 
       if (!doc) {
-         throw new NotFoundException(`User with id ${id} not found`);
+         throw new NotFoundException(`Utilisateur inexistant`);
       }
 
       return doc;
@@ -42,7 +42,7 @@ export class UsersService {
       const list = await this._userModel.findById(id_user).lean<UserActivities>();
 
       if (!list) {
-         throw new NotFoundException(`User with id ${id_user} not found`);
+         throw new NotFoundException(`Utilisateur inexistant`);
       }
 
       await this._userModel.findByIdAndUpdate(
@@ -51,4 +51,30 @@ export class UsersService {
          { new: true },
       );
    }
+
+    async delActivities(id_user: string, id_activities: string) {
+        const list = await this._userModel.findById(id_user).lean<UserActivities>();
+
+        if (!list) {
+            throw new NotFoundException(`Utilisateur inexistant`);
+        }
+
+        await this._userModel.findByIdAndUpdate(
+            list._id,
+            { $pull: { activities: id_activities } },
+            { new: true },
+        );
+    }
+
+    async banUser(id_user: string) {
+        const user = await this._userModel.findById(id_user).lean<UserActivities>();
+        if (!user) {
+            throw new NotFoundException(`Utilisateur inexistant`);
+        }
+        await this._userModel.findByIdAndUpdate(
+            id_user,
+            { $set: { isBlock: true } },
+            { new: true },
+        );
+    }
 }

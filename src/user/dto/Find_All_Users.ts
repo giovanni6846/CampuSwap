@@ -3,6 +3,9 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class UsersResponseDto {
    @ApiProperty({})
+   _id!: string;
+
+    @ApiProperty({})
    username!: string;
 
    @ApiProperty({})

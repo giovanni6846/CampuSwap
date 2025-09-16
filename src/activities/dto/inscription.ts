@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsString, IsMongoId, IsNotEmpty } from 'class-validator';
 
 export class InscriptionDto {
    @ApiProperty({
@@ -7,6 +7,8 @@ export class InscriptionDto {
       example: '68c01799de4eba6627c764f9',
    })
    @IsString()
+   @IsNotEmpty()
+   @IsMongoId()
    id_user!: string;
 
    @ApiProperty({
@@ -14,6 +16,8 @@ export class InscriptionDto {
       example: '68c01799de4eba6627c764f6',
    })
    @IsString()
+   @IsNotEmpty()
+   @IsMongoId()
    id_activities!: string;
 
    /*@ApiProperty({

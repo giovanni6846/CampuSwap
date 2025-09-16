@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {ConflictException, Injectable, NotFoundException, UnauthorizedException} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
@@ -53,13 +53,6 @@ export class ActivitiesService {
    }
 
    async inscription(id_user: string, id_activities: string) {
-      if (!Types.ObjectId.isValid(id_user) || !Types.ObjectId.isValid(id_activities)) {
-         throw new NotFoundException({
-            success: false,
-            message: 'ID utilisateur ou activité invalide',
-            data: [],
-         });
-      }
 
       const user = await this.UsersService.findUser(id_user);
 
@@ -94,7 +87,7 @@ export class ActivitiesService {
          activity.seat -= 1;
          await activity.save();
          return {
-            activity: id_activities,
+            activity: activity,
             message: 'Inscription réussite',
          };
       }
@@ -128,4 +121,90 @@ export class ActivitiesService {
          };
       }
    }
+
+    async desinscription(id_user: string, id_activities: string) {
+
+        const user = await this.UsersService.findUser(id_user);
+
+        if (!user) {
+            throw new NotFoundException({
+                message: 'Utilisateur inéxistant',
+            })
+        }
+
+        const activity = await this._ActivitiesModel.findById(id_activities);
+
+        if (!activity) {
+            throw new NotFoundException({
+                message: 'Activité inexistante',
+            });
+        }
+
+        for (const users_activities of user.activities) {
+            if (users_activities == id_activities) {
+                await this.UsersService.delActivities(id_user, id_activities);
+                activity.seat += 1;
+                await activity.save();
+                return {
+                    message: "Désinscription réussite"
+                }
+            }
+        }
+
+        throw new NotFoundException({
+            message: "Vous n'êtes pas inscrit à cette activité"
+        })
+    }
+
+    async moderation(id_user: string, id_activities: string, motif: string, moderation: boolean) {
+
+        const user = await this.UsersService.findUser(id_user);
+
+        if (!user) {
+            throw new NotFoundException({
+                message: 'Utilisateur inéxistant',
+            })
+        }
+
+        if (!user.isAdmin){
+            throw new UnauthorizedException({
+                message: "Vous n'avez pas les droits",
+            })
+        }
+
+        const activity = await this._ActivitiesModel.findById(id_activities);
+
+        if (!activity) {
+            throw new NotFoundException({
+                message: 'Activité inexistante',
+            });
+        }
+
+        const users = await this.UsersService.findAll();
+        const user_moderation = await this.UsersService.findUser(activity.user_created.toString());
+
+        for (const user of users) {
+            for (const users_activities of user.activities) {
+                if (users_activities == id_activities) {
+                    await this.UsersService.delActivities(user._id, id_activities);
+                    break;
+                }
+            }
+        }
+
+        if (moderation){
+            await this.UsersService.banUser(user_moderation._id.toString());
+            await activity.deleteOne();
+            return {
+                message: "Modération de l'activité réussite",
+                motif: motif,
+            }
+        }else{
+                await activity.deleteOne();
+                return {
+                    message: "Modération de l'activité réussite",
+                    motif: motif,
+                }
+        }
+    }
 }
