@@ -21,7 +21,7 @@ export class User {
    idBlock!: boolean;
 
    @Prop({ required: true })
-   activities!: [];
+   activities!: string[];
 
    @Prop({ required: true })
    IsValidate!: boolean;

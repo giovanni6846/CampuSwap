@@ -2,16 +2,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsMongoId } from 'class-validator';
 
-export class FindUserDto {
-   @ApiProperty({
-      description: 'Rechercher utilisatuer via ID',
-      example: '12345',
-   })
+export class UserAllResponseDTO {
+   @ApiProperty({})
    @IsMongoId()
-   id!: string;
-}
+   _id!: string;
 
-export class UserResponseDto {
    @ApiProperty({})
    username!: string;
 
@@ -19,5 +14,11 @@ export class UserResponseDto {
    email!: string;
 
    @ApiProperty({})
+   isBlock!: boolean;
+
+   @ApiProperty({})
    activities!: string[];
+
+   @ApiProperty({})
+   IsValidated!: boolean;
 }

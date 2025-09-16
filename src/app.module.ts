@@ -17,6 +17,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { ActivitiesModule } from './activities/activities.module';
+import { StatusModule } from './status/status.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -27,6 +28,7 @@ import { UserModule } from './user/user.module';
       ),
       UserModule,
       ActivitiesModule,
+      StatusModule,
    ],
    controllers: [],
    providers: [],
