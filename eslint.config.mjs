@@ -35,6 +35,7 @@ export default [
     },
     rules: {
         'no-unused-vars': 'off',
+        "no-redeclare": ["error", { "builtinGlobals": false }],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {   argsIgnorePattern: '^_',

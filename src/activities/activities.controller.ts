@@ -2,12 +2,12 @@ import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { ActivitiesService } from './activities.service';
+import { DesinscriptionDto, DesinscriptionResponseDto } from './dto/desinscription';
 import { ActivityResponseDto, Enter_Activity } from './dto/Find_Activities_By_Id';
 import { FindAllActivities } from './dto/find_all_activities';
-import { InscriptionDto } from './dto/inscription';
-import { SearchActivitiesDto } from './dto/search';
-import {DesinscriptionDto} from "./dto/desinscription";
-import {ModerationDto} from "./dto/moderation";
+import { InscriptionDto, InscriptionResponseDto } from './dto/inscription';
+import { ModerationDto, ModerationResponseDto } from './dto/moderation';
+import { SearchActivitiesDto, SearchActivitiesResponseDto } from './dto/search';
 
 @ApiTags('activities')
 @Controller('activities')
@@ -24,7 +24,7 @@ export class ActivitiesController {
    @Get('search')
    @ApiResponse({ status: 200, description: 'Activité trouvé.' })
    @ApiResponse({ status: 401, description: 'Erreur JWT' })
-   async search(@Query() query: SearchActivitiesDto) {
+   async search(@Query() query: SearchActivitiesDto): Promise<SearchActivitiesResponseDto> {
       return this._ActivitiesService.search(query);
    }
 
@@ -42,10 +42,13 @@ export class ActivitiesController {
 
    @Post('inscription')
    @ApiBody({ type: InscriptionDto })
-   @ApiResponse({ status: 201, description: 'Inscription réussite'})
-   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiResponse({ status: 201, description: 'Inscription réussite' })
+   @ApiResponse({
+      status: 409,
+      description: 'Problèmes de paramètres entrée / inscription impossible',
+   })
    @ApiResponse({ status: 401, description: 'Erreur JWT' })
-   async inscription(@Body() body: InscriptionDto) {
+   async inscription(@Body() body: InscriptionDto): Promise<InscriptionResponseDto> {
       return this._ActivitiesService.inscription(
          body.id_user,
          body.id_activities,
@@ -55,28 +58,34 @@ export class ActivitiesController {
 
    @Post('desinscription')
    @ApiBody({ type: DesinscriptionDto })
-   @ApiResponse({ status: 201, description: 'Désinscription réussite'})
-   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiResponse({ status: 201, description: 'Désinscription réussite' })
+   @ApiResponse({
+      status: 409,
+      description: 'Problèmes de paramètres entrée / inscription impossible',
+   })
    @ApiResponse({ status: 401, description: 'Erreur JWT' })
-   async desinscription(@Body() body: DesinscriptionDto) {
-       return this._ActivitiesService.desinscription(
-           body.id_user,
-           body.id_activities,
-           /*body.jwt*/
-       )
+   async desinscription(@Body() body: DesinscriptionDto): Promise<DesinscriptionResponseDto> {
+      return this._ActivitiesService.desinscription(
+         body.id_user,
+         body.id_activities,
+         /*body.jwt*/
+      );
    }
 
    @Post('moderation')
-   @ApiBody({ type: ModerationDto})
-   @ApiResponse({status: 201, description: "Modération de l'activité réussite"})
-   @ApiResponse({ status: 409, description: 'Problèmes de paramètres entrée / inscription impossible' })
+   @ApiBody({ type: ModerationDto })
+   @ApiResponse({ status: 201, description: "Modération de l'activité réussite" })
+   @ApiResponse({
+      status: 409,
+      description: 'Problèmes de paramètres entrée / inscription impossible',
+   })
    @ApiResponse({ status: 401, description: 'Erreur JWT' })
-    async moderation(@Body() body: ModerationDto){
-       return this._ActivitiesService.moderation(
-           body.id_user,
-           body.id_activities,
-           body.motif,
-           body.moderation
-       )
+   async moderation(@Body() body: ModerationDto): Promise<ModerationResponseDto> {
+      return this._ActivitiesService.moderation(
+         body.id_user,
+         body.id_activities,
+         body.motif,
+         body.moderation,
+      );
    }
 }

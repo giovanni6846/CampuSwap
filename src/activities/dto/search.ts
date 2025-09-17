@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsMongoId, IsOptional, IsString } from 'class-validator';
 
 export class SearchActivitiesDto {
    @ApiProperty({
@@ -36,4 +36,26 @@ export class SearchActivitiesDto {
     @IsOptional()
     @IsString()
     jwt?: string;*/
+}
+
+export class SearchActivitiesResponseDto {
+   @ApiProperty({})
+   @IsMongoId()
+   _id!: string;
+
+   @ApiProperty({})
+   name!: string;
+
+   @ApiProperty({})
+   description!: string;
+
+   @ApiProperty({})
+   @IsMongoId()
+   user_created!: string;
+
+   @ApiProperty({})
+   datdeb!: Date;
+
+   @ApiProperty({})
+   datfin!: Date;
 }

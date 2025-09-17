@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsMongoId, IsNotEmpty } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
 export class InscriptionDto {
    @ApiProperty({
@@ -27,4 +27,23 @@ export class InscriptionDto {
     })
     @IsString()
     jwt?: string;*/
+}
+
+export class InscriptionResponseDto {
+   @ApiProperty({})
+   @IsMongoId()
+   activity!: string;
+
+   @ApiProperty({})
+   @IsString()
+   @IsNotEmpty()
+   message!: string;
+
+   /*@ApiProperty({
+         description: "Jeton JWT d'authentification",
+         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+         required: false,
+     })
+     @IsString()
+     jwt?: string;*/
 }

@@ -38,7 +38,7 @@ export class UsersService {
       return doc;
    }
 
-   async addActivities(id_user: string, id_activities: string) {
+   async addActivities(id_user: string, id_activities: string): Promise<void> {
       const list = await this._userModel.findById(id_user).lean<UserActivities>();
 
       if (!list) {
@@ -52,29 +52,25 @@ export class UsersService {
       );
    }
 
-    async delActivities(id_user: string, id_activities: string) {
-        const list = await this._userModel.findById(id_user).lean<UserActivities>();
+   async delActivities(id_user: string, id_activities: string): Promise<void> {
+      const list = await this._userModel.findById(id_user).lean<UserActivities>();
 
-        if (!list) {
-            throw new NotFoundException(`Utilisateur inexistant`);
-        }
+      if (!list) {
+         throw new NotFoundException(`Utilisateur inexistant`);
+      }
 
-        await this._userModel.findByIdAndUpdate(
-            list._id,
-            { $pull: { activities: id_activities } },
-            { new: true },
-        );
-    }
+      await this._userModel.findByIdAndUpdate(
+         list._id,
+         { $pull: { activities: id_activities } },
+         { new: true },
+      );
+   }
 
-    async banUser(id_user: string) {
-        const user = await this._userModel.findById(id_user).lean<UserActivities>();
-        if (!user) {
-            throw new NotFoundException(`Utilisateur inexistant`);
-        }
-        await this._userModel.findByIdAndUpdate(
-            id_user,
-            { $set: { isBlock: true } },
-            { new: true },
-        );
-    }
+   async banUser(id_user: string): Promise<void> {
+      const user = await this._userModel.findById(id_user).lean<UserActivities>();
+      if (!user) {
+         throw new NotFoundException(`Utilisateur inexistant`);
+      }
+      await this._userModel.findByIdAndUpdate(id_user, { $set: { isBlock: true } }, { new: true });
+   }
 }

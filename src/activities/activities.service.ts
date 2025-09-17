@@ -1,11 +1,19 @@
-import {ConflictException, Injectable, NotFoundException, UnauthorizedException} from '@nestjs/common';
+import {
+   ConflictException,
+   Injectable,
+   NotFoundException,
+   UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Model } from 'mongoose';
 
 import { UsersService } from '../user/user.service';
+import { DesinscriptionResponseDto } from './dto/desinscription';
 import { ActivityResponseDto } from './dto/Find_Activities_By_Id';
 import { FindAllActivities } from './dto/find_all_activities';
-import { SearchActivitiesDto } from './dto/search';
+import { InscriptionResponseDto } from './dto/inscription';
+import { ModerationResponseDto } from './dto/moderation';
+import { SearchActivitiesDto, SearchActivitiesResponseDto } from './dto/search';
 import { Activities, ActivitiesDocument } from './schemas/activities.schema';
 
 @Injectable()
@@ -40,7 +48,7 @@ export class ActivitiesService {
       return activities;
    }
 
-   async search(query: SearchActivitiesDto) {
+   async search(query: SearchActivitiesDto): Promise<SearchActivitiesResponseDto> {
       const filter: any = {};
       if (query.start && query.end) {
          filter.datdeb = { $gte: new Date(query.start) };
@@ -49,35 +57,38 @@ export class ActivitiesService {
       if (query.name) {
          filter.name = { $regex: query.name, $options: 'i' };
       }
-      return this._ActivitiesModel.find(filter).lean();
+      return this._ActivitiesModel.find(filter).lean<SearchActivitiesResponseDto>();
    }
 
-   async inscription(id_user: string, id_activities: string) {
-
+   async inscription(id_user: string, id_activities: string): Promise<InscriptionResponseDto> {
       const user = await this.UsersService.findUser(id_user);
 
       const activity = await this._ActivitiesModel.findById(id_activities);
 
       if (!activity) {
          throw new NotFoundException({
+            activity: '',
             message: 'Activité inexistante',
          });
       }
 
       if (activity.user_created.toString() == id_user) {
          throw new ConflictException({
+            activity: '',
             message: "Vous avez créer l'activité, inscription impossible",
          });
       }
 
       if (activity.seat <= 0) {
          throw new ConflictException({
+            activity: '',
             message: 'Plus de place disponible',
          });
       }
 
       if (user.isBlock) {
          throw new ConflictException({
+            activity: '',
             message: 'Le compte utilisateur est indisponible',
          });
       }
@@ -87,7 +98,7 @@ export class ActivitiesService {
          activity.seat -= 1;
          await activity.save();
          return {
-            activity: activity,
+            activity: id_activities,
             message: 'Inscription réussite',
          };
       }
@@ -97,18 +108,21 @@ export class ActivitiesService {
 
          if (!activities) {
             throw new NotFoundException({
+               activity: '',
                message: "L'activité utilisateur est indisponible",
             });
          }
 
          if (users_activities == id_activities) {
             throw new ConflictException({
+               activity: '',
                message: "Vous êtes déjà inscrit à l'activité",
             });
          }
 
          if (activity.datdeb < activities.datfin && activity.datfin > activities.datfin) {
             throw new ConflictException({
+               activity: '',
                message: 'Vous avez déjà une activité de réserver sur ce crénaux',
             });
          }
@@ -120,91 +134,98 @@ export class ActivitiesService {
             message: 'Inscription réussite',
          };
       }
+      return {
+         activity: '',
+         message: 'Erreur Interne',
+      };
    }
 
-    async desinscription(id_user: string, id_activities: string) {
+   async desinscription(
+      id_user: string,
+      id_activities: string,
+   ): Promise<DesinscriptionResponseDto> {
+      const user = await this.UsersService.findUser(id_user);
 
-        const user = await this.UsersService.findUser(id_user);
+      if (!user) {
+         throw new NotFoundException({
+            message: 'Utilisateur inéxistant',
+         });
+      }
 
-        if (!user) {
-            throw new NotFoundException({
-                message: 'Utilisateur inéxistant',
-            })
-        }
+      const activity = await this._ActivitiesModel.findById(id_activities);
 
-        const activity = await this._ActivitiesModel.findById(id_activities);
+      if (!activity) {
+         throw new NotFoundException({
+            message: 'Activité inexistante',
+         });
+      }
 
-        if (!activity) {
-            throw new NotFoundException({
-                message: 'Activité inexistante',
-            });
-        }
-
-        for (const users_activities of user.activities) {
-            if (users_activities == id_activities) {
-                await this.UsersService.delActivities(id_user, id_activities);
-                activity.seat += 1;
-                await activity.save();
-                return {
-                    message: "Désinscription réussite"
-                }
-            }
-        }
-
-        throw new NotFoundException({
-            message: "Vous n'êtes pas inscrit à cette activité"
-        })
-    }
-
-    async moderation(id_user: string, id_activities: string, motif: string, moderation: boolean) {
-
-        const user = await this.UsersService.findUser(id_user);
-
-        if (!user) {
-            throw new NotFoundException({
-                message: 'Utilisateur inéxistant',
-            })
-        }
-
-        if (!user.isAdmin){
-            throw new UnauthorizedException({
-                message: "Vous n'avez pas les droits",
-            })
-        }
-
-        const activity = await this._ActivitiesModel.findById(id_activities);
-
-        if (!activity) {
-            throw new NotFoundException({
-                message: 'Activité inexistante',
-            });
-        }
-
-        const users = await this.UsersService.findAll();
-        const user_moderation = await this.UsersService.findUser(activity.user_created.toString());
-
-        for (const user of users) {
-            for (const users_activities of user.activities) {
-                if (users_activities == id_activities) {
-                    await this.UsersService.delActivities(user._id, id_activities);
-                    break;
-                }
-            }
-        }
-
-        if (moderation){
-            await this.UsersService.banUser(user_moderation._id.toString());
-            await activity.deleteOne();
+      for (const users_activities of user.activities) {
+         if (users_activities == id_activities) {
+            await this.UsersService.delActivities(id_user, id_activities);
+            activity.seat += 1;
+            await activity.save();
             return {
-                message: "Modération de l'activité réussite",
-                motif: motif,
+               message: 'Désinscription réussite',
+            };
+         }
+      }
+
+      throw new NotFoundException({
+         message: "Vous n'êtes pas inscrit à cette activité",
+      });
+   }
+
+   async moderation(
+      id_user: string,
+      id_activities: string,
+      motif: string,
+      moderation: boolean,
+   ): Promise<ModerationResponseDto> {
+      const user = await this.UsersService.findUser(id_user);
+
+      if (!user) {
+         throw new NotFoundException({
+            message: 'Utilisateur inéxistant',
+         });
+      }
+
+      if (!user.isAdmin) {
+         throw new UnauthorizedException({
+            message: "Vous n'avez pas les droits",
+         });
+      }
+
+      const activity = await this._ActivitiesModel.findById(id_activities);
+
+      if (!activity) {
+         throw new NotFoundException({
+            message: 'Activité inexistante',
+         });
+      }
+
+      const users = await this.UsersService.findAll();
+      const user_moderation = await this.UsersService.findUser(activity.user_created.toString());
+
+      for (const user of users) {
+         for (const users_activities of user.activities) {
+            if (users_activities == id_activities) {
+               await this.UsersService.delActivities(user._id, id_activities);
+               break;
             }
-        }else{
-                await activity.deleteOne();
-                return {
-                    message: "Modération de l'activité réussite",
-                    motif: motif,
-                }
-        }
-    }
+         }
+      }
+
+      if (moderation) {
+         await this.UsersService.banUser(user_moderation._id.toString());
+         await activity.deleteOne();
+      } else {
+         await activity.deleteOne();
+      }
+
+      return {
+         message: "Modération de l'activité réussite",
+         motif: motif,
+      };
+   }
 }
