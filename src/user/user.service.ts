@@ -1,6 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import {ConflictException, Injectable, NotFoundException, UnauthorizedException} from '@nestjs/common';
+import {InjectModel, IsObjectIdPipe} from '@nestjs/mongoose';
+import {Model, Types} from 'mongoose';
 
 import { UserActivities } from './dto/Add_Activities';
 import { UserAllResponseDTO } from './dto/Find_All_User';
@@ -35,6 +35,18 @@ export class UsersService {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
 
+       if (doc.isBlock){
+           throw new UnauthorizedException({
+               message: 'Utilisateur bloqué',
+           })
+       }
+
+       if (doc.IsValidated == false){
+           throw new UnauthorizedException({
+               message: 'Inscription non finalisée'
+           })
+       }
+
       return doc;
    }
 
@@ -44,6 +56,19 @@ export class UsersService {
       if (!list) {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
+
+       if (list.isBlock){
+           throw new UnauthorizedException({
+               message: 'Utilisateur bloqué',
+           })
+       }
+
+       if (list.IsValidated == false){
+           throw new UnauthorizedException({
+               message: 'Inscription non finalisée'
+           })
+       }
+
 
       await this._userModel.findByIdAndUpdate(
          id_user,
@@ -59,6 +84,18 @@ export class UsersService {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
 
+       if (list.isBlock){
+           throw new UnauthorizedException({
+               message: 'Utilisateur bloqué',
+           })
+       }
+
+       if (list.IsValidated == false){
+           throw new UnauthorizedException({
+               message: 'Inscription non finalisée'
+           })
+       }
+
       await this._userModel.findByIdAndUpdate(
          list._id,
          { $pull: { activities: id_activities } },
@@ -68,9 +105,14 @@ export class UsersService {
 
    async banUser(id_user: string): Promise<void> {
       const user = await this._userModel.findById(id_user).lean<UserActivities>();
+
       if (!user) {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
-      await this._userModel.findByIdAndUpdate(id_user, { $set: { isBlock: true } }, { new: true });
+
+      console.log(user._id)
+
+      await this._userModel.findByIdAndUpdate(new Types.ObjectId(user._id), { $set: { isBlock: true } }, { new: true });
+
    }
 }

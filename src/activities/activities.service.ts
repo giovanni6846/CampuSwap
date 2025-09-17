@@ -67,29 +67,19 @@ export class ActivitiesService {
 
       if (!activity) {
          throw new NotFoundException({
-            activity: '',
             message: 'Activité inexistante',
          });
       }
 
       if (activity.user_created.toString() == id_user) {
          throw new ConflictException({
-            activity: '',
             message: "Vous avez créer l'activité, inscription impossible",
          });
       }
 
       if (activity.seat <= 0) {
          throw new ConflictException({
-            activity: '',
             message: 'Plus de place disponible',
-         });
-      }
-
-      if (user.isBlock) {
-         throw new ConflictException({
-            activity: '',
-            message: 'Le compte utilisateur est indisponible',
          });
       }
 
@@ -108,21 +98,18 @@ export class ActivitiesService {
 
          if (!activities) {
             throw new NotFoundException({
-               activity: '',
                message: "L'activité utilisateur est indisponible",
             });
          }
 
          if (users_activities == id_activities) {
             throw new ConflictException({
-               activity: '',
                message: "Vous êtes déjà inscrit à l'activité",
             });
          }
 
          if (activity.datdeb < activities.datfin && activity.datfin > activities.datfin) {
             throw new ConflictException({
-               activity: '',
                message: 'Vous avez déjà une activité de réserver sur ce crénaux',
             });
          }
@@ -146,19 +133,13 @@ export class ActivitiesService {
    ): Promise<DesinscriptionResponseDto> {
       const user = await this.UsersService.findUser(id_user);
 
-      if (!user) {
-         throw new NotFoundException({
-            message: 'Utilisateur inéxistant',
-         });
-      }
-
       const activity = await this._ActivitiesModel.findById(id_activities);
 
-      if (!activity) {
-         throw new NotFoundException({
-            message: 'Activité inexistante',
-         });
-      }
+       if (!activity) {
+           throw new NotFoundException({
+               message: 'Activité inexistante',
+           });
+       }
 
       for (const users_activities of user.activities) {
          if (users_activities == id_activities) {
@@ -183,12 +164,6 @@ export class ActivitiesService {
       moderation: boolean,
    ): Promise<ModerationResponseDto> {
       const user = await this.UsersService.findUser(id_user);
-
-      if (!user) {
-         throw new NotFoundException({
-            message: 'Utilisateur inéxistant',
-         });
-      }
 
       if (!user.isAdmin) {
          throw new UnauthorizedException({

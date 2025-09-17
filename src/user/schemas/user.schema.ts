@@ -18,7 +18,7 @@ export class User {
    isAdmin!: boolean;
 
    @Prop({ required: true })
-   idBlock!: boolean;
+   isBlock!: boolean;
 
    @Prop({ required: true })
    activities!: string[];
