@@ -7,8 +7,7 @@ import { UsersService } from './user.service';
 import {ActivitiesModule} from "../activities/activities.module";
 
 @Module({
-   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-   ActivitiesModule],
+   imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
    controllers: [UserController],
    providers: [UsersService],
    exports: [MongooseModule, UsersService],

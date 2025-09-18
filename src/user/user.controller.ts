@@ -9,12 +9,12 @@ import { UsersService } from './user.service';
 export class UserController {
    constructor(private readonly _UserService: UsersService) {}
 
-   @Get()
+   /*@Get()
    @ApiResponse({ status: 200, description: 'Utilisateurs trouvé.' })
    @ApiResponse({ status: 404, description: 'Utilisateurs non trouvé.' })
    findAll(@Query('skip') skip = '0', @Query('limit') limit = '20'): Promise<UserResponseDto[]> {
       return this._UserService.findAll(Number(skip), Number(limit));
-   }
+   }*/
 
    @Get(':id')
    @ApiParam({

@@ -23,5 +23,5 @@ export class UserAllResponseDTO {
    activities!: string[];
 
    @ApiProperty({})
-   IsValidated!: boolean;
+   IsValidate!: boolean;
 }

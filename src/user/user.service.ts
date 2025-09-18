@@ -13,12 +13,10 @@ import { UserAllResponseDTO } from './dto/Find_All_User';
 import { UsersResponseDto } from './dto/Find_All_Users';
 import { UserResponseDto } from './dto/Find_User_By_Id';
 import { User, UserDocument } from './schemas/user.schema';
-import {ActivitiesService} from "../activities/activities.service";
 
 @Injectable()
 export class UsersService {
-   constructor(@InjectModel(User.name) private readonly _userModel: Model<UserDocument>,
-               private readonly ActivitiesService: ActivitiesService,) {}
+   constructor(@InjectModel(User.name) private readonly _userModel: Model<UserDocument>) {}
 
    // READ - find all (avec pagination simple)
    async findAll(skip = 0, limit = 20): Promise<UsersResponseDto[]> {
@@ -37,25 +35,25 @@ export class UsersService {
    }
 
    async findUser(id: string): Promise<UserAllResponseDTO> {
-      const doc = await this._userModel.findById(id).lean<UserAllResponseDTO>();
+      const user = await this._userModel.findById(id).lean<UserAllResponseDTO>();
 
-      if (!doc) {
+      if (!user) {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
 
-       if (doc.isBlock){
+       if (user.isBlock){
            throw new UnauthorizedException({
                message: 'Utilisateur bloqué',
            })
        }
 
-       if (doc.IsValidated == false){
+       if (user.IsValidate == false){
            throw new UnauthorizedException({
                message: 'Inscription non finalisée'
            })
        }
 
-      return doc;
+      return user;
    }
 
    async addActivities(id_user: string, id_activities: string): Promise<void> {
