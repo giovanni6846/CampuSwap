@@ -1,4 +1,10 @@
-import {ConflictException, Injectable, NotFoundException, UnauthorizedException} from '@nestjs/common';
+import {
+    ConflictException,
+    Injectable,
+    InternalServerErrorException,
+    NotFoundException,
+    UnauthorizedException
+} from '@nestjs/common';
 import {InjectModel, IsObjectIdPipe} from '@nestjs/mongoose';
 import {Model, Types} from 'mongoose';
 
@@ -7,10 +13,12 @@ import { UserAllResponseDTO } from './dto/Find_All_User';
 import { UsersResponseDto } from './dto/Find_All_Users';
 import { UserResponseDto } from './dto/Find_User_By_Id';
 import { User, UserDocument } from './schemas/user.schema';
+import {ActivitiesService} from "../activities/activities.service";
 
 @Injectable()
 export class UsersService {
-   constructor(@InjectModel(User.name) private readonly _userModel: Model<UserDocument>) {}
+   constructor(@InjectModel(User.name) private readonly _userModel: Model<UserDocument>,
+               private readonly ActivitiesService: ActivitiesService,) {}
 
    // READ - find all (avec pagination simple)
    async findAll(skip = 0, limit = 20): Promise<UsersResponseDto[]> {
@@ -69,12 +77,27 @@ export class UsersService {
            })
        }
 
-
       await this._userModel.findByIdAndUpdate(
          id_user,
          { $push: { activities: id_activities } },
          { new: true },
       );
+
+       const user = await this._userModel.findById(id_user).lean<UserActivities>();
+
+       if (!user) {
+           throw new NotFoundException(`Utilisateur inexistant`);
+       }
+
+       for (const activity of user.activities){
+           if (activity == id_activities){
+               return
+           }
+       }
+
+       throw new InternalServerErrorException({
+           message: 'Erreur lors de la mise à jour'
+       })
    }
 
    async delActivities(id_user: string, id_activities: string): Promise<void> {
