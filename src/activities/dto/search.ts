@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsMongoId, IsOptional, IsString } from 'class-validator';
+import {IsDateString, IsMongoId, IsNotEmpty, IsOptional, IsString} from 'class-validator';
 
 export class SearchActivitiesDto {
    @ApiProperty({
@@ -29,13 +29,12 @@ export class SearchActivitiesDto {
    @IsString()
    name?: string;
 
-   /*@ApiProperty({
+   @ApiProperty({
         description: "JWT d'authentification",
-        required: false,
     })
-    @IsOptional()
+    @IsNotEmpty()
     @IsString()
-    jwt?: string;*/
+    jwt!: string;
 }
 
 export class SearchActivitiesResponseDto {

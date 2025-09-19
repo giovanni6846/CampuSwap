@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import jwt from 'jsonwebtoken';
 
 import { UsersService } from '../user/user.service';
 import { DesinscriptionResponseDto } from './dto/desinscription';
@@ -24,8 +25,9 @@ export class ActivitiesService {
    ) {}
 
    //Recherche d'une activité par son ID
-   async findOne(id: string): Promise<ActivityResponseDto> {
+   async findOne(id: string, jwt: string): Promise<ActivityResponseDto> {
       //Requête faite ci-dessous
+       verifyToken(jwt)
       const doc = await this._ActivitiesModel.findById(id).lean();
 
       //Doc porte la date si la requête à trouver une donnée sinon, retourne une erreur
@@ -49,6 +51,7 @@ export class ActivitiesService {
    }
 
    async search(query: SearchActivitiesDto): Promise<SearchActivitiesResponseDto> {
+       verifyToken(query.jwt)
       const filter: any = {};
       if (query.start && query.end) {
          filter.datdeb = { $gte: new Date(query.start) };
@@ -60,7 +63,10 @@ export class ActivitiesService {
       return this._ActivitiesModel.find(filter).lean<SearchActivitiesResponseDto>();
    }
 
-   async inscription(id_user: string, id_activities: string): Promise<InscriptionResponseDto> {
+   async inscription(id_user: string, id_activities: string, jwt: string): Promise<InscriptionResponseDto> {
+
+      verifyToken(jwt)
+
       const user = await this.UsersService.findUser(id_user);
 
       const activity = await this._ActivitiesModel.findById(id_activities);
@@ -130,16 +136,18 @@ export class ActivitiesService {
    async desinscription(
       id_user: string,
       id_activities: string,
+      jwt: string
    ): Promise<DesinscriptionResponseDto> {
+       verifyToken(jwt)
       const user = await this.UsersService.findUser(id_user);
 
       const activity = await this._ActivitiesModel.findById(id_activities);
 
-       if (!activity) {
-           throw new NotFoundException({
-               message: 'Activité inexistante',
-           });
-       }
+      if (!activity) {
+         throw new NotFoundException({
+            message: 'Activité inexistante',
+         });
+      }
 
       for (const users_activities of user.activities) {
          if (users_activities == id_activities) {
@@ -162,7 +170,9 @@ export class ActivitiesService {
       id_activities: string,
       motif: string,
       moderation: boolean,
+      jwt: string,
    ): Promise<ModerationResponseDto> {
+       verifyToken(jwt)
       const user = await this.UsersService.findUser(id_user);
 
       if (!user.isAdmin) {
@@ -203,4 +213,13 @@ export class ActivitiesService {
          motif: motif,
       };
    }
+}
+
+function verifyToken(token: string):void{
+
+    const decoded = jwt.verify(token, 's0vyuKByX43XgiINVr7RjScAHYu6g4');
+
+    if(decoded == false){
+        throw new UnauthorizedException("Votre session à expiré, veuillez-vous reconnecter")
+    }
 }

@@ -17,6 +17,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { ActivitiesModule } from './activities/activities.module';
+import { AuthModule } from './auth/auth.module';
 import { StatusModule } from './status/status.module';
 import { UserModule } from './user/user.module';
 
@@ -29,6 +30,7 @@ import { UserModule } from './user/user.module';
       UserModule,
       ActivitiesModule,
       StatusModule,
+      AuthModule,
    ],
    controllers: [],
    providers: [],

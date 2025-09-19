@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {Controller, Get, Param, UseGuards} from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { FindUserDto, UserResponseDto } from './dto/Find_User_By_Id';
@@ -25,7 +25,7 @@ export class UserController {
    @ApiResponse({ status: 200, description: 'Utilisateur trouvé.' })
    @ApiResponse({ status: 404, description: 'Utilisateur non trouvé.' })
    async findOne(@Param() params: FindUserDto): Promise<UserResponseDto> {
-      const doc = await this._UserService.findOne(params.id);
+      const doc = await this._UserService.findOne(params.id, params.jwt);
 
       return {
          username: doc.username,

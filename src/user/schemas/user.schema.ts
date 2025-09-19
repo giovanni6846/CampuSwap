@@ -24,7 +24,7 @@ export class User {
    activities!: string[];
 
    @Prop({ required: true })
-   IsValidated!: boolean;
+   IsValidate!: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

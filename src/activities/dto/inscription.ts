@@ -20,13 +20,13 @@ export class InscriptionDto {
    @IsMongoId()
    id_activities!: string;
 
-   /*@ApiProperty({
+   @ApiProperty({
         description: "Jeton JWT d'authentification",
-        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-        required: false,
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
     })
+    @IsNotEmpty()
     @IsString()
-    jwt?: string;*/
+    jwt!: string;
 }
 
 export class InscriptionResponseDto {

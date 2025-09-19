@@ -37,7 +37,7 @@ export class ActivitiesController {
    @ApiResponse({ status: 200, description: 'Activité trouvé.' })
    @ApiResponse({ status: 404, description: 'Activité non trouvé.' })
    async findOne(@Param() params: Enter_Activity): Promise<ActivityResponseDto> {
-      return this._ActivitiesService.findOne(params.id);
+      return this._ActivitiesService.findOne(params.id, params.jwt);
    }
 
    @Post('inscription')
@@ -52,7 +52,7 @@ export class ActivitiesController {
       return this._ActivitiesService.inscription(
          body.id_user,
          body.id_activities,
-         /*body.jwt*/
+         body.jwt,
       );
    }
 
@@ -68,7 +68,7 @@ export class ActivitiesController {
       return this._ActivitiesService.desinscription(
          body.id_user,
          body.id_activities,
-         /*body.jwt*/
+         body.jwt,
       );
    }
 
@@ -86,6 +86,7 @@ export class ActivitiesController {
          body.id_activities,
          body.motif,
          body.moderation,
+          body.jwt,
       );
    }
 }
