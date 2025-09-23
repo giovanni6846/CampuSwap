@@ -1,8 +1,8 @@
 import {
-   ConflictException,
-   Injectable,
-   NotFoundException,
-   UnauthorizedException,
+    ConflictException,
+    Injectable, InternalServerErrorException,
+    NotFoundException,
+    UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -16,6 +16,8 @@ import { InscriptionResponseDto } from './dto/inscription';
 import { ModerationResponseDto } from './dto/moderation';
 import { SearchActivitiesDto, SearchActivitiesResponseDto } from './dto/search';
 import { Activities, ActivitiesDocument } from './schemas/activities.schema';
+import { CreationResponseDto} from "./dto/creation";
+import { SuppressionResponseDto } from "./dto/suppression";
 
 @Injectable()
 export class ActivitiesService {
@@ -25,9 +27,8 @@ export class ActivitiesService {
    ) {}
 
    //Recherche d'une activité par son ID
-   async findOne(id: string, jwt: string): Promise<ActivityResponseDto> {
+   async findOne(id: string): Promise<ActivityResponseDto> {
       //Requête faite ci-dessous
-       verifyToken(jwt)
       const doc = await this._ActivitiesModel.findById(id).lean();
 
       //Doc porte la date si la requête à trouver une donnée sinon, retourne une erreur
@@ -51,7 +52,6 @@ export class ActivitiesService {
    }
 
    async search(query: SearchActivitiesDto): Promise<SearchActivitiesResponseDto> {
-       verifyToken(query.jwt)
       const filter: any = {};
       if (query.start && query.end) {
          filter.datdeb = { $gte: new Date(query.start) };
@@ -63,9 +63,113 @@ export class ActivitiesService {
       return this._ActivitiesModel.find(filter).lean<SearchActivitiesResponseDto>();
    }
 
-   async inscription(id_user: string, id_activities: string, jwt: string): Promise<InscriptionResponseDto> {
+    async creation(name: string, datdeb: Date, datfin: Date, description: string, seat: string, user_created: string): Promise<CreationResponseDto> {
 
-      verifyToken(jwt)
+        const user = await this.UsersService.findUser(user_created);
+
+        if (!user) {
+            throw new NotFoundException("Utilisateur inexistant")
+        }
+
+        if (datdeb >= datfin){
+            throw new ConflictException("Date de début supérieur ou égal à la date de fin")
+        }
+
+        /*if (seat == "0"){
+            throw new ConflictException("Impossible de créer une activité avec 0 place disponible")
+        }*/
+
+        for (const users_activities of user.activities) {
+
+            const activities = await this._ActivitiesModel.findById(users_activities);
+
+            if (!activities) {
+                throw new NotFoundException({
+                    message: "L'activité utilisateur est indisponible",
+                });
+            }
+
+            if (datdeb < activities.datfin && datfin > activities.datfin) {
+                throw new ConflictException({
+                    message: 'Vous avez déjà une activité de réserver sur ce crénaux, création impossible',
+                });
+            }
+        }
+
+        await this._ActivitiesModel.create({
+            datdeb: datdeb,
+            datfin: datfin,
+            description: description,
+            name: name,
+            seat: seat,
+            user_created: user_created,
+        });
+
+        const filter: any = {};
+
+        if (name) {
+            filter.name = { $regex: name, $options: 'i' };
+        }
+        const activities_created =  this._ActivitiesModel.find(filter).lean<SearchActivitiesResponseDto>();
+
+        if (!activities_created) {
+            throw new InternalServerErrorException("Erreur lors de la création")
+        }
+
+        return {
+            message: "Création de l'activité réussite"
+        }
+
+    }
+
+    async suppression(id_user: string, id_activities: string): Promise<SuppressionResponseDto> {
+
+        const user = await this.UsersService.findUser(id_user);
+
+        if (!user) {
+            throw new NotFoundException("Utilisateur inexistant")
+        }
+
+        const activities = await this._ActivitiesModel.findById(id_activities);
+
+        if (!activities) {
+            throw new NotFoundException("Activité inexistante")
+        }
+
+        if (user._id!= activities._id.toString()) {
+            throw new UnauthorizedException({
+                message: "Vous ne pouvez-pas supprimer cette activité",
+            });
+        }
+
+        const users = await this.UsersService.findAll();
+
+        for (const user of users) {
+            for (const users_activities of user.activities) {
+                if (users_activities == id_activities) {
+                    await this.UsersService.delActivities(user._id, id_activities);
+                    break;
+                }
+            }
+        }
+
+        await activities.deleteOne();
+
+        const activitiesCtrl = await this._ActivitiesModel.findById(id_activities);
+
+        if (activitiesCtrl) {
+            throw new InternalServerErrorException("SUppression de l'activité impossible")
+        }
+
+        return {
+            message: "Suppression réussite"
+        }
+
+
+    }
+
+   async inscription(id_user: string, id_activities: string): Promise<InscriptionResponseDto> {
+
 
       const user = await this.UsersService.findUser(id_user);
 
@@ -136,9 +240,7 @@ export class ActivitiesService {
    async desinscription(
       id_user: string,
       id_activities: string,
-      jwt: string
    ): Promise<DesinscriptionResponseDto> {
-       verifyToken(jwt)
       const user = await this.UsersService.findUser(id_user);
 
       const activity = await this._ActivitiesModel.findById(id_activities);
@@ -170,9 +272,7 @@ export class ActivitiesService {
       id_activities: string,
       motif: string,
       moderation: boolean,
-      jwt: string,
    ): Promise<ModerationResponseDto> {
-       verifyToken(jwt)
       const user = await this.UsersService.findUser(id_user);
 
       if (!user.isAdmin) {
@@ -213,13 +313,4 @@ export class ActivitiesService {
          motif: motif,
       };
    }
-}
-
-function verifyToken(token: string):void{
-
-    const decoded = jwt.verify(token, 's0vyuKByX43XgiINVr7RjScAHYu6g4');
-
-    if(decoded == false){
-        throw new UnauthorizedException("Votre session à expiré, veuillez-vous reconnecter")
-    }
 }

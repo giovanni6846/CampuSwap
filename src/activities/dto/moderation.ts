@@ -23,14 +23,6 @@ export class ModerationDto {
    @IsBoolean()
    @IsNotEmpty()
    moderation!: boolean;
-
-   @ApiProperty({
-         description: "Jeton JWT d'authentification",
-         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-     })
-     @IsString()
-     @IsNotEmpty()
-     jwt!: string;
 }
 
 export class ModerationResponseDto {

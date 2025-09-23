@@ -9,10 +9,6 @@ export class Enter_Activity {
    @IsMongoId()
    id!: string;
 
-   @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-    jwt!: string;
 }
 
 export class ActivityResponseDto {

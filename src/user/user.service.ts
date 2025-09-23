@@ -30,8 +30,7 @@ export class UsersService {
    }
 
    //Recherche d'un utilisateur par son ID
-   async findOne(id: string, jwt: string): Promise<UserResponseDto> {
-      verifyToken(jwt)
+   async findOne(id: string): Promise<UserResponseDto> {
       const doc = await this._userModel.findById(id).lean<UserResponseDto>();
 
       if (!doc) {
@@ -197,7 +196,7 @@ export class UsersService {
       });
 
       return {
-         jwt: token,
+         user_Id: user._id,
          message: 'Connexion réussite',
       };
    }
@@ -253,13 +252,4 @@ export class UsersService {
       const saltRounds = 10;
       return await bcrypt.hash(password, saltRounds);
    }
-}
-
-function verifyToken(token: string){
-
-     const decoded = jwt.verify(token, 's0vyuKByX43XgiINVr7RjScAHYu6g4');
-
-     if(decoded == false){
-         throw new UnauthorizedException("Votre session à expiré, veuillez-vous reconnecter")
-     }
 }

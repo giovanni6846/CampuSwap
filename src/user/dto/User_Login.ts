@@ -11,9 +11,10 @@ export class UserLogin {
 }
 
 export class UserLoginResponse {
+
    @ApiProperty({})
-   @IsString()
-   jwt!: string;
+   @IsMongoId()
+   user_Id!: string;
 
    @ApiProperty({})
    @IsString()

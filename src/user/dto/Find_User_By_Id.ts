@@ -10,9 +10,6 @@ export class FindUserDto {
    @IsMongoId()
    id!: string;
 
-   @ApiProperty({})
-    jwt !: string;
-
 }
 
 export class UserResponseDto {

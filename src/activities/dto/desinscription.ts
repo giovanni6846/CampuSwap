@@ -20,14 +20,6 @@ export class DesinscriptionDto {
    @IsMongoId()
    id_activities!: string;
 
-   @ApiProperty({
-         description: "Jeton JWT d'authentification",
-         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-
-     })
-     @IsNotEmpty()
-     @IsString()
-     jwt!: string;
 }
 
 export class DesinscriptionResponseDto {

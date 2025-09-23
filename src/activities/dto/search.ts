@@ -29,12 +29,6 @@ export class SearchActivitiesDto {
    @IsString()
    name?: string;
 
-   @ApiProperty({
-        description: "JWT d'authentification",
-    })
-    @IsNotEmpty()
-    @IsString()
-    jwt!: string;
 }
 
 export class SearchActivitiesResponseDto {

@@ -18,5 +18,9 @@ export class AuthResponseDto {
 
    @ApiProperty({})
    @IsNotEmpty()
+   user_Id!: string;
+
+   @ApiProperty({})
+   @IsNotEmpty()
    message!: string;
 }
