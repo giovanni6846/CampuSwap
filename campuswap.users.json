@@ -1,0 +1,192 @@
+[{
+  "_id": {
+    "$oid": "68c415892862b6fbf1fb8ffc"
+  },
+  "username": "admin",
+  "password": "hashedpassword123",
+  "email": "admin@example.com",
+  "isAdmin": true,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68c415892862b6fbf1fb8ffd"
+  },
+  "username": "john_doe",
+  "password": "hashedpassword456",
+  "email": "john@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68c415892862b6fbf1fb8ffe"
+  },
+  "username": "jane_smith",
+  "password": "$2b$10$JvbmgZr.s5v0N2eEQ4Jim.LxdcXD4a1U0IjK9nRaibGDTo8MI3WOO",
+  "email": "jane@example.com",
+  "isAdmin": true,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d00"
+  },
+  "username": "daniel",
+  "password": "hashedpassword456",
+  "email": "daniel@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": false
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d02"
+  },
+  "username": "mario",
+  "password": "hashedpasswordabc",
+  "email": "mario@example.com",
+  "isAdmin": false,
+  "isBlock": true,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d03"
+  },
+  "username": "luigi",
+  "password": "hashedpassworddef",
+  "email": "luigi@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d04"
+  },
+  "username": "peach",
+  "password": "hashedpasswordghi",
+  "email": "peach@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d05"
+  },
+  "username": "toad",
+  "password": "hashedpasswordjkl",
+  "email": "toad@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": false
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d06"
+  },
+  "username": "bowser",
+  "password": "hashedpasswordmno",
+  "email": "bowser@example.com",
+  "isAdmin": false,
+  "isBlock": true,
+  "activities": [],
+  "IsValidate": false
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d07"
+  },
+  "username": "yoshi",
+  "password": "hashedpasswordpqr",
+  "email": "yoshi@example.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68ca73d9efe44fac21c04d08"
+  },
+  "username": "wario",
+  "password": "hashedpasswordstu",
+  "email": "wario@example.com",
+  "isAdmin": false,
+  "isBlock": true,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68cd1719ada15cbe5ef8d500"
+  },
+  "username": "Giovanni",
+  "password": "$2b$10$wEeAwqNW5I321VZxCywqF.xJKHKLnTD.hxqsjKzZMeOJGyDPUlHtG",
+  "email": "giovanni.miro@gmail.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "activities": [],
+  "IsValidate": true
+},
+{
+  "_id": {
+    "$oid": "68d2634dc64e6b94ab7d82b6"
+  },
+  "IsValidate": true,
+  "activities": [],
+  "email": "test.etudiant@gmail.com",
+  "isAdmin": true,
+  "isBlock": true,
+  "password": "$2b$10$OjP1g8c3IsGpAMbJwQ5MwO/7L9w.4LEL7gpYUrJsmZoC6g740JJzW",
+  "username": "Test"
+},
+{
+  "_id":{
+  "$oid": "68d2930e6bfd1f6685bb1648"
+  },
+  "IsValidate": false,
+  "activities": [],
+  "email": "test.etudiant2@gmail.com",
+  "isAdmin": true,
+  "isBlock": false,
+  "password": "$2b$10$dAwcQ4PbrTsiRIQn7yMk/OIxjJuuE163QHpxY1JGa7fXy6GR9k82G",
+  "username": "Test2"
+},
+{
+  "_id":{
+  "$oid": "68d2a21c6bfd1f6685bb16e4"
+  },
+  "IsValidate": true,
+  "activities": [],
+  "email": "test.etudiant3@gmail.com",
+  "isAdmin": true,
+  "isBlock": false,
+  "password": "$2b$10$JvbmgZr.s5v0N2eEQ4Jim.LxdcXD4a1U0IjK9nRaibGDTo8MI3WOO",
+  "username": "Test3"
+},
+{
+  "_id":{
+  "$oid": "68d2a21c6bfd1f6685bb16e5"
+  },
+  "IsValidate": true,
+  "activities": [],
+  "email": "test.etudiant4@gmail.com",
+  "isAdmin": false,
+  "isBlock": false,
+  "password": "$2b$10$JvbmgZr.s5v0N2eEQ4Jim.LxdcXD4a1U0IjK9nRaibGDTo8MI3WOO",
+  "username": "Test3"
+}]

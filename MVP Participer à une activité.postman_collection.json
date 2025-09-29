@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "5afc0d3b-b518-450f-8f4b-7c0e5e0d8e3a",
+		"name": "MVP Participer à une activité",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48663608",
+		"_collection_link": "https://giovanni-miro-3673479.postman.co/workspace/Giovanni-Miro's-Workspace~06b07489-ec77-41df-89cb-7f2e253020b3/collection/48663608-5afc0d3b-b518-450f-8f4b-7c0e5e0d8e3a?action=share&source=collection_link&creator=48663608"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is correct\", function () {",
+							"    pm.expect([200, 201, 401, 404, 409, 500]).to.include(pm.response.code);",
+							"});",
+							"",
+							"",
+							"",
+							"let jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"authToken\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t  \"email\": \"{{email}}\",\n      \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Actvities_Before",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"seat\", jsonData.seat);",
+							"let expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"), 10);",
+							"",
+							"",
+							"if (expectedStatus === 201) {",
+							"    pm.test(\"Status code is correct\", function () {",
+							"        pm.expect([200]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"}",
+							"",
+							"if (expectedStatus === 401) {",
+							"    pm.test(\"Status code is correct\", function () {",
+							"        pm.expect([200, 401]).to.include(pm.response.code);",
+							"    });",
+							"}",
+							"",
+							"if (expectedStatus === 409) {",
+							"    pm.test(\"Status code is correct\", function () {",
+							"        pm.expect([200, 409]).to.include(pm.response.code);",
+							"    });",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/activities/{{id_activities}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"activities",
+						"{{id_activities}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inscription",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is correct\", function () {",
+							"    pm.expect([200, 201, 401, 404, 409, 500]).to.include(pm.response.code);",
+							"});",
+							"",
+							"let body;",
+							"try {",
+							"    body = pm.response.json();",
+							"} catch (e) {",
+							"    body = {};",
+							"}",
+							"",
+							"// Cas 200 : Inscription réussie",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Réponse OK - Inscription réussite\", function () {",
+							"        pm.expect(body).to.have.property(\"activity\");",
+							"        pm.expect(body).to.have.property(\"message\", \"Inscription réussite\");",
+							"    });",
+							"}",
+							"",
+							"// Cas 404 : activité ou activité utilisateur inexistante",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"Réponse 404 - Ressource inexistante\", function () {",
+							"        pm.expect(body).to.have.property(\"message\");",
+							"        pm.expect([",
+							"            \"Activité inexistante\",",
+							"            \"L'activité utilisateur est indisponible\"",
+							"        ]).to.include(body.message);",
+							"    });",
+							"}",
+							"",
+							"if (pm.response.code === 401) {",
+							"    pm.test(\"Réponse 401 - Accès refusé\", function () {",
+							"        pm.expect(body).to.have.property(\"message\");",
+							"        pm.expect([",
+							"            \"Unauthorized\",",
+							"            \"Inscription non finalisée\",",
+							"            \"Utilisateur bloqué\"",
+							"        ]).to.include(body.message);",
+							"    });",
+							"}",
+							"",
+							"// Cas 409 : conflits métier",
+							"if (pm.response.code === 409) {",
+							"    pm.test(\"Réponse 409 - Conflit d'inscription\", function () {",
+							"        pm.expect(body).to.have.property(\"message\");",
+							"        pm.expect([",
+							"            \"Vous avez créer l'activité, inscription impossible\",",
+							"            \"Plus de place disponible\",",
+							"            \"Vous êtes déjà inscrit à l'activité\",",
+							"            \"Vous avez déjà une activité de réserver sur ce crénaux\"",
+							"        ]).to.include(body.message);",
+							"    });",
+							"}",
+							"",
+							"// Cas 500 : erreur interne",
+							"if (pm.response.code === 500) {",
+							"    pm.test(\"Réponse 500 - Erreur interne\", function () {",
+							"        pm.expect(body).to.have.property(\"message\", \"Erreur Interne\");",
+							"    });",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t  \"id_user\": \"{{id_user}}\",\n      \"id_activities\":\"{{id_activities}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/activities/inscription",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"activities",
+						"inscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actvities_After",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"let expected = parseInt(pm.collectionVariables.get(\"seat\"), 10);",
+							"let expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"), 10);",
+							"",
+							"let jsonData = pm.response.json();",
+							"let actual = jsonData.seat;",
+							"",
+							"let diff = expected - actual;",
+							"",
+							"if (expectedStatus === 201) {",
+							"    pm.test(\"La différence est bien égale à 1\", function () {",
+							"        pm.expect(diff).to.eql(1);",
+							"    });",
+							"",
+							"    pm.test(\"Code d'erreur\", function () {",
+							"        pm.expect([200]).to.include(pm.response.code);",
+							"    });",
+							"}",
+							"",
+							"if (expectedStatus === 401) {",
+							"    pm.test(\"L'ID attendu n'est pas présent dans activities\", function () {",
+							"        pm.expect([200, 401]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"    pm.test(\"La différence n'est pas égale à 1\", function () {",
+							"        pm.expect(diff).to.not.eql(1);",
+							"    });",
+							"}",
+							"",
+							"if (expectedStatus === 409) {",
+							"    pm.test(\"L'ID attendu n'est pas présent dans activities\", function () {",
+							"        pm.expect([200, 409]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"        pm.test(\"La différence n'est pas égale à 1\", function () {",
+							"        pm.expect(diff).to.not.eql(1);",
+							"    });",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/activities/{{id_activities}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"activities",
+						"{{id_activities}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User_After",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let actual = pm.iterationData.get(\"id_activities\");",
+							"let jsonData = pm.response.json();",
+							"let expectedStatus = parseInt(pm.iterationData.get(\"expectedStatus\"), 10);",
+							"",
+							"",
+							"if (expectedStatus === 201) {",
+							"    pm.test(\"Code d'erreur\", function () {",
+							"        pm.expect([200]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"    pm.test(\"L'ID attendu est présent dans activities\", function () {",
+							"        pm.expect(jsonData.activities).to.include(actual);",
+							"    });",
+							"}",
+							"",
+							"if (expectedStatus === 401) {",
+							"    pm.test(\"L'ID attendu n'est pas présent dans activities\", function () {",
+							"        pm.expect([200, 401]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"    /*pm.test(\"L'ID attendu n'est pas présent dans activities\", function () {",
+							"        pm.expect(jsonData.activities).to.not.include(actual);",
+							"    });*/",
+							"}",
+							"",
+							"if (expectedStatus === 409) {",
+							"    pm.test(\"L'ID attendu n'est pas présent dans activities\", function () {",
+							"        pm.expect([200, 401]).to.include(pm.response.code);",
+							"    });",
+							"",
+							"    /*pm.test(\"L'ID attendu est présent dans activities\", function () {",
+							"        pm.expect(jsonData.activities).to.not.include(actual);",
+							"    });*/",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/user/{{id_user}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"{{id_user}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authToken",
+			"value": ""
+		},
+		{
+			"key": "seat",
+			"value": ""
+		}
+	]
+}

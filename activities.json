@@ -1,0 +1,52 @@
+[
+  {
+    "_id":{
+    "$oid":"68d3e1710f40271227398068"},
+    "datdeb": "2025-09-20T10:00:00.000Z",
+    "datfin": "2025-09-20T11:00:00.000Z",
+    "description": "Séance de yoga pour débutants, durée 1h.",
+    "name": "Cours de Yoga",
+    "seat": 20,
+    "user_created": "68d2a21c6bfd1f6685bb16e5"
+  },
+  {
+    "_id":{
+    "$oid":"68d3e1710f40271227398069"},
+    "datdeb": "2025-09-20T10:30:00.000Z",
+    "datfin": "2025-09-20T12:00:00.000Z",
+    "description": "Apprenez à préparer des pâtes fraîches et des sauces traditionnelles.",
+    "name": "Atelier Cuisine Italienne",
+    "seat": 12,
+    "user_created": "68d2a21c6bfd1f6685bb16e5"
+  },
+  {
+    "_id": {
+    "$oid":"68d3e1710f4027122739806a"},
+    "datdeb": "2025-09-23T08:00:00.000Z",
+    "datfin": "2025-09-23T15:00:00.000Z",
+    "description": "Sortie en groupe pour explorer les sentiers de montagne.",
+    "name": "Randonnée Montagne",
+    "seat": 0,
+    "user_created": "68d2a21c6bfd1f6685bb16e5"
+  },
+  {
+    "_id":{
+    "$oid":"68d3e1710f4027122739806b"},
+    "datdeb": "2025-09-25T14:00:00.000Z",
+    "datfin": "2025-09-25T17:00:00.000Z",
+    "description": "Atelier créatif de peinture à l'huile, matériel fourni.",
+    "name": "Atelier Peinture",
+    "seat": 15,
+    "user_created": "68d2a21c6bfd1f6685bb16e5"
+  },
+  {
+    "_id":{
+    "$oid":"68d3e1710f4027122739806c"},
+    "datdeb": "2025-09-27T19:00:00.000Z",
+    "datfin": "2025-09-27T21:00:00.000Z",
+    "description": "Apprenez les bases de la salsa cubaine avec un professeur expérimenté.",
+    "name": "Cours de Danse Salsa",
+    "seat": 25,
+    "user_created": "68d2a21c6bfd1f6685bb16e5"
+  }
+]
