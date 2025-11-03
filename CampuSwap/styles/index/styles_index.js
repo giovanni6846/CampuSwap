@@ -55,9 +55,31 @@ export default StyleSheet.create({
         elevation: 15,
     },
 
+   button_create: {
+      width: "80%",
+      height: "5%",
+      borderRadius: 10,
+      backgroundColor: "#000",
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 15,
+
+   },
+
     text:{
+       paddingTop: "2%",
         color: "#fff",
         textAlign: "center",
         fontSize: 18,
-    }
+    },
+
+   text_or:{
+      paddingTop: "2%",
+      color: "#fff",
+      textAlign: "center",
+      fontSize: 18,
+      marginBottom: "3%"
+   }
 });
