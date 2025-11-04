@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Mise en place de la BDD Watermelon">
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/_layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/user.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Find_Activities.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Inscription_app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/styles/menu/styles_menu.js" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Ecran de login + Menu + MVP 1">
+      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Sync.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/create_db.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/modele_activities.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/modele_user.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/schemas_bdd.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/index/styles_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/styles/index/styles_index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,8 +106,18 @@
       <workItem from="1761388456590" duration="5138000" />
       <workItem from="1762102550663" duration="8000" />
       <workItem from="1762102666147" duration="4095000" />
-      <workItem from="1762157752486" duration="18020000" />
+      <workItem from="1762157752486" duration="20618000" />
+      <workItem from="1762243464611" duration="7200000" />
     </task>
+    <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
+      <option name="closed" value="true" />
+      <created>1762182432382</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762182432382</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,8 +127,20 @@
     <option featureType="dependencySupport" implementationName="javascript:npm:react" />
     <option featureType="dependencySupport" implementationName="executable:docker" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mise en place de la BDD Watermelon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise en place de la BDD Watermelon" />
+    <MESSAGE value="Ecran de login + Menu + MVP 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ecran de login + Menu + MVP 1" />
   </component>
 </project>

@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Inscription } from '../functions/Inscription_app';
 import Toast from 'react-native-root-toast';
+import { Sync } from '../functions/Sync';
 
 
 const { width } = Dimensions.get('window'); // 🔹 largeur écran pour le rendu plein écran
@@ -46,6 +47,11 @@ export default function ActivityScreen() {
                backgroundColor: '#e74c3c',
             });
          }
+   };
+
+   const sync = async () => {
+       const data = await Sync();
+       console.log(data);
    };
 
    const fetchActivities = async () => {
@@ -168,6 +174,14 @@ export default function ActivityScreen() {
                </View>
             )}
          />
+         <TouchableOpacity
+            style={[
+               styles.button,
+            ]}
+            onPress={() => sync()}
+         >
+            <Text style={styles.buttonText}> Synchronisation des données </Text>
+         </TouchableOpacity>
       </View>
    );
 }
