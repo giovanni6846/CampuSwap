@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
-export class DesinscriptionDto {
+export class SyncDto {
    @ApiProperty({
       description: "L'identifiant de l'utilisateur",
       example: '68c01799de4eba6627c764f9',
@@ -21,8 +21,13 @@ export class DesinscriptionDto {
    id_activities!: string;
 }
 
-export class DesinscriptionResponseDto {
-   @ApiProperty({})
+export class Enter_SyncDto {
+   @ApiProperty({
+      description: "L'identifiant de l'utilisateur",
+      example: '68c01799de4eba6627c764f9',
+   })
    @IsString()
-   message!: string;
+   @IsNotEmpty()
+   @IsMongoId()
+   id_user!: string;
 }

@@ -19,7 +19,6 @@ export class InscriptionDto {
    @IsNotEmpty()
    @IsMongoId()
    id_activities!: string;
-
 }
 
 export class InscriptionResponseDto {

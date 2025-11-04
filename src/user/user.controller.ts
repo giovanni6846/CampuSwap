@@ -1,9 +1,9 @@
-import {Controller, Get, Param, UseGuards} from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+import { AuthGuard } from '../auth/auth.guard';
 import { FindUserDto, UserResponseDto } from './dto/Find_User_By_Id';
 import { UsersService } from './user.service';
-import {AuthGuard} from "../auth/auth.guard";
 
 @ApiTags('user')
 @UseGuards(AuthGuard)

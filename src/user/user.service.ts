@@ -191,7 +191,7 @@ export class UsersService {
          throw new ConflictException('Mot de passe incorrecte');
       }
 
-      const token = jwt.sign({ email: email }, 's0vyuKByX43XgiINVr7RjScAHYu6g4', {
+      jwt.sign({ email: email }, 's0vyuKByX43XgiINVr7RjScAHYu6g4', {
          expiresIn: '1h',
       });
 

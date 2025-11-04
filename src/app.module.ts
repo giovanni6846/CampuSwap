@@ -20,6 +20,7 @@ import { ActivitiesModule } from './activities/activities.module';
 import { AuthModule } from './auth/auth.module';
 import { StatusModule } from './status/status.module';
 import { UserModule } from './user/user.module';
+import {SyncModule} from "./sync/sync.module";
 
 @Module({
    imports: [
@@ -31,6 +32,7 @@ import { UserModule } from './user/user.module';
       ActivitiesModule,
       StatusModule,
       AuthModule,
+      SyncModule,
    ],
    controllers: [],
    providers: [],

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {IsDateString, IsMongoId, IsNotEmpty, IsOptional, IsString} from 'class-validator';
+import { IsDateString, IsMongoId, IsOptional, IsString } from 'class-validator';
+import { ObjectId } from 'mongoose';
 
 export class SearchActivitiesDto {
    @ApiProperty({
@@ -28,13 +29,12 @@ export class SearchActivitiesDto {
    @IsOptional()
    @IsString()
    name?: string;
-
 }
 
 export class SearchActivitiesResponseDto {
    @ApiProperty({})
    @IsMongoId()
-   _id!: string;
+   _id!: string | ObjectId;
 
    @ApiProperty({})
    name!: string;
@@ -44,7 +44,7 @@ export class SearchActivitiesResponseDto {
 
    @ApiProperty({})
    @IsMongoId()
-   user_created!: string;
+   user_created!: string | ObjectId;
 
    @ApiProperty({})
    datdeb!: Date;

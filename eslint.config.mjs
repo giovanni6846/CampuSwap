@@ -16,7 +16,7 @@ export default [
 
   {
     ...tseslint.configs.recommendedTypeChecked,
-    files: ['src/**/*.ts', 'apps/**/*.ts', 'libs/**/*.ts', 'test/**/*.ts'],
+    files: ['src/**/*.ts', 'apps/**/*.ts', 'libs/**/*.ts'],
     languageOptions: {
       parser,
       parserOptions: {

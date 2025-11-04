@@ -11,7 +11,6 @@ export class UserLogin {
 }
 
 export class UserLoginResponse {
-
    @ApiProperty({})
    @IsMongoId()
    user_Id!: string;
