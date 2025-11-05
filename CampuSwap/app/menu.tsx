@@ -3,11 +3,13 @@ import { View, Text, TextInput, Image, TouchableOpacity, FlatList, Dimensions, A
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "../styles/menu/styles_menu";
 import { All_activities } from '../functions/Find_Activities';
-import { useRouter } from 'expo-router';
+import { Navigator, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Inscription } from '../functions/Inscription_app';
 import Toast from 'react-native-root-toast';
 import { Sync } from '../functions/Sync';
+import { RootSiblingParent } from 'react-native-root-siblings';
+import Slot = Navigator.Slot;
 
 
 const { width } = Dimensions.get('window'); // 🔹 largeur écran pour le rendu plein écran
@@ -30,10 +32,11 @@ export default function ActivityScreen() {
 
    const inscription = async (id:string) => {
        const response = await Inscription(await AsyncStorage.getItem('user_id'), id);
-         if (response.activity){
+       console.log(response);
+         if (response && response.activity){
             Toast.show('✅ Inscription validée !', {
                duration: Toast.durations.SHORT,
-               position: Toast.positions.BOTTOM,
+               position: Toast.positions.TOP,
                backgroundColor: '#28a745', // vert
                textColor: 'white',
                shadow: true,
@@ -43,15 +46,20 @@ export default function ActivityScreen() {
             });
          await fetchActivities();
          } else {
-            Toast.show('❌ Erreur lors de l’inscription: ${response.message}', {
+            Toast.show(`❌ Erreur lors de l’inscription: ${response.message}`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
                backgroundColor: '#e74c3c',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
             });
          }
    };
 
    const sync = async () => {
-       const data = await Sync();
-       console.log(data);
+      await Sync();
    };
 
    const fetchActivities = async () => {
@@ -113,7 +121,6 @@ export default function ActivityScreen() {
                onChangeText={setSearch}
             />
          </View>
-
          {/* Carrousel horizontal */}
          <FlatList
             data={filteredActivities}
