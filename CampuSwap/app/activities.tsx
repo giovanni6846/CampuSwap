@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, FlatList, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, Dimensions, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "../styles/activities/styles_menu";
-import { All_activities } from '../functions/Find_Activities';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Inscription } from '../functions/Inscription_app';
 import Toast from 'react-native-root-toast';
 import { read } from '../database/read';
+import { delete_enreg } from '../database/delete_enreg';
 import { Test } from '../functions/Test';
+import { unsubscribe_act } from '../functions/Unsubscribe_app';
+import { appendToStorage } from '../database/async_storage';
+import { delete_act } from '../functions/Delete_app';
 
-
-const { width } = Dimensions.get('window'); // 🔹 largeur écran pour le rendu plein écran
+const { width } = Dimensions.get('window');
 
 interface Activities_Response_Api {
    id: string;
@@ -27,8 +28,11 @@ export default function ActivityScreen() {
    const [loading, setLoading] = useState(true);
    const [search, setSearch] = useState("");
    const [activities, setActivities] = useState<Activities_Response_Api[]>([]);
+   const [userId, setUserId] = useState<string | null>(null);
 
    const fetchActivities = async () => {
+      const id = await AsyncStorage.getItem('user_id')
+      setUserId(id);
       try {
          const response = await read();
          setActivities(response);
@@ -60,6 +64,115 @@ export default function ActivityScreen() {
                delay: 0,
             });
             router.replace('/login');
+         }
+      }
+   };
+
+   const unsubscribe = async (id:string) => {
+      await Test();
+      if (await AsyncStorage.getItem('connected') === 'true'){
+         if ( await AsyncStorage.getItem('log') === 'true'){
+            const response = await unsubscribe_act(id);
+            if (response) {
+               delete_enreg(id)
+               Toast.show(`Suppression de l'activité réussit !`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: '#28a745',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+               const response = read();
+               setActivities(response);
+            }
+         } else {
+            router.replace('/login');
+         }
+      } else {
+         await Test();
+         if ((await AsyncStorage.getItem('connected') === 'true')){
+            Toast.show(`Veuillez-vous connecter`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: '#28a745',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+            router.replace('/login');
+         } else {
+            appendToStorage("unsubscribe", id)
+            delete_enreg(id)
+            Toast.show(`Désinscription de l'activité réussit en local, veuillez-vous connecter à l'appliaction pour confirmer la modification`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: '#28a745',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+         }
+      }
+   };
+
+   const deleted = async (id: string) => {
+      await Test();
+      if (await AsyncStorage.getItem('connected') === 'true'){
+
+         if ( await AsyncStorage.getItem('log') === 'true'){
+            const response = await delete_act(id);
+            if (response) {
+               delete_enreg(id)
+               Toast.show(`Suppression de l'activité réussit !`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: '#28a745',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+               const response = read();
+               setActivities(response);
+            }
+         } else {
+            router.replace('/login');
+         }
+      } else {
+         await Test();
+         if ((await AsyncStorage.getItem('connected') === 'true')){
+            Toast.show(`Veuillez-vous connecter`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: '#28a745',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+            router.replace('/login');
+         } else {
+            await appendToStorage("delete", id)
+            delete_enreg(id)
+            Toast.show(`Suppression de l'activité réussit en local, veuillez-vous connecter à l'appliaction pour confirmer la modification`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: '#28a745',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
          }
       }
    };
@@ -144,6 +257,20 @@ export default function ActivityScreen() {
                      <Text style={styles.bold}>Auteur : </Text>
                      {item.user_created}
                   </Text>
+
+                  <View style={styles.button}>
+                     <TouchableOpacity onPress={() => unsubscribe(item.id)}>
+                        <Text style={styles.bold}> Se désinscrire </Text>
+                     </TouchableOpacity>
+                  </View>
+
+                  {item.user_created === userId && (
+                     <View style={styles.button}>
+                        <TouchableOpacity  onPress={() => deleted(item.id)}>
+                           <Text style={styles.bold}> Supprimer l&#39;activité </Text>
+                        </TouchableOpacity>
+                     </View>
+                  )}
                </View>
             )}
          />

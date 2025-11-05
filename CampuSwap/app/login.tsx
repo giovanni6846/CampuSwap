@@ -3,10 +3,10 @@ import { View, Image, Text, TextInput, Alert, TouchableOpacity } from "react-nat
 import styles from "../styles/index/styles_index";
 import { login } from '../functions/Login_app';
 import { useRouter } from 'expo-router';
-import { All_activities } from '../functions/Find_Activities';
 import { Test } from '../functions/Test';
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { maj_offline } from '../functions/Offline';
 
 interface LoginApiResponse {
    message: string;
@@ -31,6 +31,7 @@ export default function LoginScreen() {
             setError(`Erreur ${response.statusCode} : ${response.message}`);
          } else {
             await AsyncStorage.setItem('log','true');
+            await maj_offline()
             router.replace('/menu');
          }
       }

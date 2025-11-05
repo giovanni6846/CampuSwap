@@ -3,18 +3,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function Test(){
 
-   const netInfo = await NetInfo.fetch();
+   /*const netInfo = await NetInfo.fetch();
    if (!netInfo.isConnected) {
       console.warn("📴 Hors ligne : pas de connexion Internet.");
       return { ok: false, status: 'offline', message: "Vous êtes hors ligne." };
-   }
+   }*/
 
    try {
       const response = await fetch('http://10.205.124.106:28000/status', {
          method: 'GET',
          headers: { 'Content-Type': 'application/json' },
       });
-
+      await AsyncStorage.setItem('connected', 'false');
       if (response.ok) {
          const data = await response.json();
          await AsyncStorage.setItem('connected', 'true');
