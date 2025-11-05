@@ -77,6 +77,18 @@ export class ActivitiesService {
       return activities;
    }
 
+    async findAllAU(): Promise<SearchActivitiesResponseDto[]> {
+        //Requête faite ci-dessous
+        const activities = await this._ActivitiesModel.find().lean<SearchActivitiesResponseDto[]>();
+
+        //Doc porte la date si la requête à trouver une donnée sinon, retourne une erreur
+        if (!activities) {
+            throw new NotFoundException(`Activities not found`);
+        }
+
+        return activities;
+    }
+
    async search(query: SearchActivitiesDto): Promise<SearchActivitiesResponseDto> {
       const filter: any = {};
       if (query.start && query.end) {
@@ -166,7 +178,7 @@ export class ActivitiesService {
          throw new NotFoundException('Activité inexistante');
       }
 
-      if (user._id != activities._id.toString()) {
+      if (user._id != activities.user_created.toString()) {
          throw new UnauthorizedException({
             message: 'Vous ne pouvez-pas supprimer cette activité',
          });
@@ -182,6 +194,7 @@ export class ActivitiesService {
             }
          }
       }
+
 
       await activities.deleteOne();
 

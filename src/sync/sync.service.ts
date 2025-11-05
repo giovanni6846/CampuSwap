@@ -29,7 +29,25 @@ export class SyncService {
              });
          }
       }
-      console.log(liste_activities);
+
+       const activities: SearchActivitiesResponseDto[] = await this.ActivitiesService.findAllAU();
+
+       for (const act of activities) {
+           console.log(act);
+           console.log(act.user_created);
+           console.log(id);
+           if ((act.user_created) == id) {
+               liste_activities.push({
+                   _id: act._id.toString(),
+                   name: act.name,
+                   description: act.description,
+                   datdeb: new Date(act.datdeb),
+                   datfin: new Date(act.datfin),
+                   user_created: act.user_created,
+               });
+           }
+       }
+       console.log(liste_activities);
       return liste_activities;
    }
 }
