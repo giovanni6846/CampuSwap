@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Ajout de l'appel pour la synchronisation + correction sur watermelon OUT">
-      <change afterPath="$PROJECT_DIR$/CampuSwap/database/database.ts" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Inscription données dans la bdd local + ajout notification inscription">
+      <change afterPath="$PROJECT_DIR$/CampuSwap/app/login.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CampuSwap/database/read.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CampuSwap/styles/activities/styles_menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/package.json" afterDir="false" />
     </list>
@@ -59,31 +60,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PRO403-11-APM&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "PRO403-11-APM",
+    "last_opened_file_path": "/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/styles/activities",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/CampuSwap/styles/activities" />
       <recent name="$PROJECT_DIR$/CampuSwap/pictures/icones" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -109,7 +111,7 @@
       <workItem from="1762102550663" duration="8000" />
       <workItem from="1762102666147" duration="4095000" />
       <workItem from="1762157752486" duration="20618000" />
-      <workItem from="1762243464611" duration="13871000" />
+      <workItem from="1762243464611" duration="23561000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -127,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762252786849</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Inscription données dans la bdd local + ajout notification inscription">
+      <option name="closed" value="true" />
+      <created>1762330177307</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762330177307</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +162,7 @@
     <MESSAGE value="Mise en place de la BDD Watermelon" />
     <MESSAGE value="Ecran de login + Menu + MVP 1" />
     <MESSAGE value="Ajout de l'appel pour la synchronisation + correction sur watermelon OUT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de l'appel pour la synchronisation + correction sur watermelon OUT" />
+    <MESSAGE value="Inscription données dans la bdd local + ajout notification inscription" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inscription données dans la bdd local + ajout notification inscription" />
   </component>
 </project>
