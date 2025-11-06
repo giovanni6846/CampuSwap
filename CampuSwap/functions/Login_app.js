@@ -21,11 +21,13 @@ export async function login(username, password){
             delete_all()
             await AsyncStorage.removeItem("unsubscribe");
             await AsyncStorage.removeItem("delete");
-
          }
          await AsyncStorage.setItem('authToken', data.token);
          await AsyncStorage.setItem('user_id', data.user_Id);
-         await Sync();
+         await AsyncStorage.setItem('isAdmin', String(data.isAdmin));
+         if (await AsyncStorage.getItem("isAdmin") == "false") {
+            await Sync();
+         }
       }
 
       return data;

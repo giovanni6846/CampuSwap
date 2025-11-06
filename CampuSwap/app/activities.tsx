@@ -148,26 +148,8 @@ export default function ActivityScreen() {
                   hideOnPress: true,
                   delay: 0,
                });
-               const response = read();
-               setActivities(response);
+               setActivities(read())
             }
-         } else {
-            router.replace('/login');
-         }
-      } else {
-         await Test();
-         if ((await AsyncStorage.getItem('connected') === 'true')){
-            Toast.show(`Veuillez-vous connecter`, {
-               duration: Toast.durations.SHORT,
-               position: Toast.positions.TOP,
-               backgroundColor: '#28a745',
-               textColor: 'white',
-               shadow: true,
-               animation: true,
-               hideOnPress: true,
-               delay: 0,
-            });
-            router.replace('/login');
          } else {
             await appendToStorage("delete", id)
             delete_enreg(id)
@@ -181,15 +163,28 @@ export default function ActivityScreen() {
                hideOnPress: true,
                delay: 0,
             });
+            router.replace('/login');
          }
+      } else {
+         await appendToStorage("delete", id)
+         delete_enreg(id)
+         Toast.show(`Suppression de l'activité réussit en local, veuillez-vous connecter à l'appliaction pour confirmer la modification`, {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.TOP,
+            backgroundColor: '#28a745',
+            textColor: 'white',
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+            delay: 0,
+         });
+         setActivities(read());
       }
    };
 
    const user = async () => {
 
    };
-
-
 
    useEffect(() => {
       fetchActivities();

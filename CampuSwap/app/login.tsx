@@ -12,6 +12,7 @@ interface LoginApiResponse {
    message: string;
    token?: string;
    user_Id?: string;
+   isAdmin?: boolean;
    error?: string;
    statusCode?: number;
 }
@@ -31,9 +32,14 @@ export default function LoginScreen() {
          if (response.error) {
             setError(`Erreur ${response.statusCode} : ${response.message}`);
          } else {
-            await AsyncStorage.setItem('log','true');
-            await maj_offline()
-            router.replace('/menu');
+            if (await AsyncStorage.getItem('isAdmin') === 'true') {
+               await AsyncStorage.setItem('log','true');
+               router.replace('/admin');
+            } else {
+               await AsyncStorage.setItem('log','true');
+               await maj_offline()
+               router.replace('/menu');
+            }
          }
       }
    };
