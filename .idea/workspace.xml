@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Mise en route du mode hors-ligne avec lecture en base de données local + login">
-      <change afterPath="$PROJECT_DIR$/CampuSwap/database/async_storage.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/database/delete_enreg.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Delete_app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Unsubscribe_app.js" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Fin du MVP1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +108,8 @@
       <workItem from="1762102666147" duration="4095000" />
       <workItem from="1762157752486" duration="20618000" />
       <workItem from="1762243464611" duration="24963000" />
-      <workItem from="1762342556158" duration="13952000" />
+      <workItem from="1762342556158" duration="14022000" />
+      <workItem from="1762416594074" duration="4836000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -146,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762339199252</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fin du MVP1">
+      <option name="closed" value="true" />
+      <created>1762358546702</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762358546702</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +178,7 @@
     <MESSAGE value="Ajout de l'appel pour la synchronisation + correction sur watermelon OUT" />
     <MESSAGE value="Inscription données dans la bdd local + ajout notification inscription" />
     <MESSAGE value="Mise en route du mode hors-ligne avec lecture en base de données local + login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise en route du mode hors-ligne avec lecture en base de données local + login" />
+    <MESSAGE value="Fin du MVP1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fin du MVP1" />
   </component>
 </project>

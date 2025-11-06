@@ -10,7 +10,7 @@ import Toast from 'react-native-root-toast';
 import { Sync } from '../functions/Sync';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import Slot = Navigator.Slot;
-
+import { Test } from '../functions/Test';
 
 const { width } = Dimensions.get('window'); // 🔹 largeur écran pour le rendu plein écran
 
@@ -31,9 +31,11 @@ export default function ActivityScreen() {
    const [activities, setActivities] = useState<Activities_Response_Api[]>([]);
 
    const inscription = async (id:string) => {
-       const response = await Inscription(await AsyncStorage.getItem('user_id'), id);
-       console.log(response);
-         if (response && response.activity){
+      await Test();
+      if (await AsyncStorage.getItem('connected') === 'true') {
+         const response = await Inscription(await AsyncStorage.getItem('user_id'), id);
+         console.log(response);
+         if (response && response.activity) {
             Toast.show('✅ Inscription validée !', {
                duration: Toast.durations.SHORT,
                position: Toast.positions.TOP,
@@ -44,7 +46,8 @@ export default function ActivityScreen() {
                hideOnPress: true,
                delay: 0,
             });
-         await fetchActivities();
+            await Sync();
+            await fetchActivities();
          } else {
             Toast.show(`❌ Erreur lors de l’inscription: ${response.message}`, {
                duration: Toast.durations.SHORT,
@@ -56,10 +59,18 @@ export default function ActivityScreen() {
                hideOnPress: true,
             });
          }
-   };
-
-   const sync = async () => {
-      await Sync();
+      } else {
+         Toast.show(`Vous aller passer en mode hors-ligne`, {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.TOP,
+            backgroundColor: 'orange',
+            textColor: 'white',
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+         });
+         router.replace('/activities');
+      }
    };
 
    const fetchActivities = async () => {
@@ -181,14 +192,6 @@ export default function ActivityScreen() {
                </View>
             )}
          />
-         <TouchableOpacity
-            style={[
-               styles.button,
-            ]}
-            onPress={() => sync()}
-         >
-            <Text style={styles.buttonText}> Synchronisation des données </Text>
-         </TouchableOpacity>
       </View>
    );
 }

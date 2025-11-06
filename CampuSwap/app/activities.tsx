@@ -11,6 +11,8 @@ import { Test } from '../functions/Test';
 import { unsubscribe_act } from '../functions/Unsubscribe_app';
 import { appendToStorage } from '../database/async_storage';
 import { delete_act } from '../functions/Delete_app';
+import { Sync } from '../functions/Sync';
+import { maj_offline } from '../functions/Offline';
 
 const { width } = Dimensions.get('window');
 
@@ -44,15 +46,12 @@ export default function ActivityScreen() {
    };
 
    const menu = async () => {
+      await Test();
       if (await AsyncStorage.getItem('connected') === 'true'){
          if ( await AsyncStorage.getItem('log') === 'true'){
+            await maj_offline()
             router.replace('/menu');
          } else {
-            router.replace('/login');
-         }
-      } else {
-         await Test();
-         if ((await AsyncStorage.getItem('connected') === 'true')){
             Toast.show(`Veuillez-vous connecter`, {
                duration: Toast.durations.SHORT,
                position: Toast.positions.TOP,
@@ -65,6 +64,17 @@ export default function ActivityScreen() {
             });
             router.replace('/login');
          }
+      } else {
+         Toast.show(`Serveur non joignable`, {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.TOP,
+            backgroundColor: 'red',
+            textColor: 'white',
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+            delay: 0,
+         });
       }
    };
 
@@ -89,26 +99,24 @@ export default function ActivityScreen() {
                setActivities(response);
             }
          } else {
+            await appendToStorage("unsubscribe", id)
+            delete_enreg(id)
+            Toast.show(`Désinscription de l'activité réussit en local, veuillez-vous connecter à l'application pour confirmer la modification`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: '#28a745',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
             router.replace('/login');
          }
       } else {
-         await Test();
-         if ((await AsyncStorage.getItem('connected') === 'true')){
-            Toast.show(`Veuillez-vous connecter`, {
-               duration: Toast.durations.SHORT,
-               position: Toast.positions.TOP,
-               backgroundColor: '#28a745',
-               textColor: 'white',
-               shadow: true,
-               animation: true,
-               hideOnPress: true,
-               delay: 0,
-            });
-            router.replace('/login');
-         } else {
-            appendToStorage("unsubscribe", id)
+            await appendToStorage("unsubscribe", id)
             delete_enreg(id)
-            Toast.show(`Désinscription de l'activité réussit en local, veuillez-vous connecter à l'appliaction pour confirmer la modification`, {
+            Toast.show(`Désinscription de l'activité réussit en local, veuillez-vous connecter à l'application pour confirmer la modification`, {
                duration: Toast.durations.SHORT,
                position: Toast.positions.TOP,
                backgroundColor: '#28a745',
@@ -118,7 +126,7 @@ export default function ActivityScreen() {
                hideOnPress: true,
                delay: 0,
             });
-         }
+            setActivities(read());
       }
    };
 
@@ -204,7 +212,7 @@ export default function ActivityScreen() {
       <View style={[styles.container, { paddingHorizontal: 0 }]}>
          {/* Barre d’onglets */}
          <View style={styles.tabBar}>
-            <TouchableOpacity style={styles.tabItem} onPress={() => router.push('./activities')}>
+            <TouchableOpacity style={styles.tabItem}>
                <Icon name="star-outline" size={22} color="#5b4fb3" />
                <Text style={styles.tabText}>Mes activités</Text>
             </TouchableOpacity>

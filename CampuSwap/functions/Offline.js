@@ -36,6 +36,8 @@ export const maj_offline = async () => {
          }
       }
 
+      await AsyncStorage.removeItem("unsubscribe");
+
       /*Activité à supprimer*/
        const data2 = await AsyncStorage.getItem("delete");
        const list2= data2 ? JSON.parse(data2) : [];
@@ -69,4 +71,6 @@ export const maj_offline = async () => {
             console.warn(`⚠️ Échec désinscription ${id_activity}: ${response.status}`);
          }
       }
+
+      await AsyncStorage.removeItem("delete");
 };
