@@ -198,6 +198,7 @@ export class UsersService {
       return {
          user_Id: user._id,
          message: 'Connexion réussite',
+         isAdmin: user.isAdmin,
       };
    }
 

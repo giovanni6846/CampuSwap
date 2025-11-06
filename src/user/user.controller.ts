@@ -21,7 +21,6 @@ export class UserController {
    @ApiResponse({ status: 404, description: 'Utilisateur non trouvé.' })
    async findOne(@Param() params: FindUserDto): Promise<UserResponseDto> {
       const doc = await this._UserService.findOne(params.id);
-
       return {
          username: doc.username,
          email: doc.email,

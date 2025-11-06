@@ -23,4 +23,7 @@ export class AuthResponseDto {
    @ApiProperty({})
    @IsNotEmpty()
    message!: string;
+
+    @ApiProperty({})
+    isAdmin!: boolean;
 }

@@ -8,6 +8,9 @@ export class UserLogin {
 
    @ApiProperty({})
    password!: string;
+
+    @ApiProperty({})
+    isAdmin!: boolean;
 }
 
 export class UserLoginResponse {
@@ -18,4 +21,7 @@ export class UserLoginResponse {
    @ApiProperty({})
    @IsString()
    message!: string;
+
+    @ApiProperty({})
+    isAdmin!: boolean;
 }
