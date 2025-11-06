@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Fin du MVP1">
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Fin du MVP1 + correctif bug">
+      <change afterPath="$PROJECT_DIR$/CampuSwap/database/delete_all.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -109,7 +107,7 @@
       <workItem from="1762157752486" duration="20618000" />
       <workItem from="1762243464611" duration="24963000" />
       <workItem from="1762342556158" duration="14022000" />
-      <workItem from="1762416594074" duration="4836000" />
+      <workItem from="1762416594074" duration="6436000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -151,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762358546702</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fin du MVP1 + correctif bug">
+      <option name="closed" value="true" />
+      <created>1762421447894</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762421447894</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +185,7 @@
     <MESSAGE value="Inscription données dans la bdd local + ajout notification inscription" />
     <MESSAGE value="Mise en route du mode hors-ligne avec lecture en base de données local + login" />
     <MESSAGE value="Fin du MVP1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fin du MVP1" />
+    <MESSAGE value="Fin du MVP1 + correctif bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fin du MVP1 + correctif bug" />
   </component>
 </project>
