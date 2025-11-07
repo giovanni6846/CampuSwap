@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction pour le changement d'utilisateur">
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/styles/admin/styles_admin.js" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Mise en place écran MVP 2 + gestion du compte administrateur">
+      <change afterPath="$PROJECT_DIR$/CampuSwap/app/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Create_user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Moderer_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,8 @@
       <workItem from="1762243464611" duration="24963000" />
       <workItem from="1762342556158" duration="14022000" />
       <workItem from="1762416594074" duration="11810000" />
-      <workItem from="1762433974895" duration="7258000" />
+      <workItem from="1762433974895" duration="7559000" />
+      <workItem from="1762501772518" duration="7177000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -169,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762423086272</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Mise en place écran MVP 2 + gestion du compte administrateur">
+      <option name="closed" value="true" />
+      <created>1762443327281</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762443327281</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +208,7 @@
     <MESSAGE value="Fin du MVP1" />
     <MESSAGE value="Fin du MVP1 + correctif bug" />
     <MESSAGE value="Correction pour le changement d'utilisateur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction pour le changement d'utilisateur" />
+    <MESSAGE value="Mise en place écran MVP 2 + gestion du compte administrateur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mise en place écran MVP 2 + gestion du compte administrateur" />
   </component>
 </project>

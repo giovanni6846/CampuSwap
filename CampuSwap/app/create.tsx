@@ -7,6 +7,7 @@ import { Test } from '../functions/Test';
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { maj_offline } from '../functions/Offline';
+import { create_user } from '../functions/Create_user';
 
 interface LoginApiResponse {
    message: string;
@@ -20,64 +21,51 @@ interface LoginApiResponse {
 export default function LoginScreen() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const [username, setUsername] = useState("");
    const [error, setError] = useState("");
    const router = useRouter();
 
    const handleLogin = async () => {
-      if (email === "" || password === "") {
-         Alert.alert("Veuillez renseigner les champs identifiant / password");
-      } else {
-         await AsyncStorage.setItem('log','false');
-         const response = await login(email, password) as LoginApiResponse;
-         if (response.error) {
-            setError(`Erreur ${response.statusCode} : ${response.message}`);
-         } else {
-            if (await AsyncStorage.getItem('isAdmin') === 'true') {
-               await AsyncStorage.setItem('log','true');
-               router.replace('/admin');
-            } else {
-               await AsyncStorage.setItem('log','true');
-               await maj_offline()
-               router.replace('/menu');
-            }
-         }
-      }
-   };
-
-   const create = async () => {
-      /*if (email === "" || password === "") {
-         Alert.alert("Veuillez renseigner les champs identifiant / password");
-      } else {
-         const response = await login(email, password) as LoginApiResponse;
-         if (response.error) {
-            setError(`Erreur ${response.statusCode} : ${response.message}`);
-         } else {
-            router.replace('/menu');
-         }
-      }*/
-   };
-
-   const modeHL = async () => {
-      await AsyncStorage.setItem('log','false');
-      const response    = await Test();
-      if (!response.ok){
-         Toast.show(`${response.message}`, {
+      if (email === "" || password === "" || username === "" ) {
+         Toast.show(`Veuillez renseigner tout vos champs !`, {
             duration: Toast.durations.SHORT,
             position: Toast.positions.TOP,
-            backgroundColor: 'red', // vert
+            backgroundColor: 'red',
             textColor: 'white',
             shadow: true,
             animation: true,
             hideOnPress: true,
             delay: 0,
          });
-         router.replace('/activities');
+      } else {
+         const response = await create_user(email, password, username);
+         if (response.message !== ""){
+            Toast.show(`Demande de création de compte envoyé, veuillez regarder vos mails !`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: 'green',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+            router.push('/login');
+         }
+         else{
+            Toast.show(`Erreur lors de la création de l'utilisateur`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: 'red',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+         }
       }
    };
-
-   useEffect(() => {
-      modeHL();
-   }, []);
 
    return (
       <View style={styles.container}>
@@ -85,7 +73,7 @@ export default function LoginScreen() {
             style={styles.logo}
             source={require("../pictures/icones/logo.png")}
          />
-         <Text style={styles.title}>Connexion</Text>
+         <Text style={styles.title}>Création d&#39;un compte</Text>
          <TextInput
             style={styles.input}
             placeholder="Email"
@@ -101,6 +89,13 @@ export default function LoginScreen() {
             onChangeText={setPassword}
             secureTextEntry
          />
+         <TextInput
+            style={styles.input}
+            placeholder="Nom Utilisateur"
+            value={username}
+            onChangeText={setUsername}
+            secureTextEntry
+         />
          {error ? (
             <Text style={{ color: 'red', marginBottom: 10, textAlign: 'center' }}>
                {error}
@@ -108,23 +103,6 @@ export default function LoginScreen() {
          ) : null}
          <View style={styles.button}>
             <TouchableOpacity onPress={handleLogin}>
-               <Text style={styles.text}> Se connecter </Text>
-            </TouchableOpacity>
-         </View>
-
-         <Text style={styles.text_or}> ou </Text>
-
-         <TextInput
-            style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-         />
-
-         <View style={styles.button_create}>
-            <TouchableOpacity onPress={() => router.push('./create')}>
                <Text style={styles.text}> Créer un compte </Text>
             </TouchableOpacity>
          </View>

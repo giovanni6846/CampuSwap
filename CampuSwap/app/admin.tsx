@@ -4,6 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "../styles/admin/styles_admin";
 import { useRouter } from 'expo-router';
 import { All_activities } from '../functions/Find_Activities';
+import Toast from 'react-native-root-toast';
+import { moderation } from '../functions/Moderer_app';
+import asyncStorage from '@react-native-async-storage/async-storage/src/AsyncStorage';
 
 const { width } = Dimensions.get('window');
 
@@ -21,6 +24,7 @@ export default function ActivityScreen() {
    const [loading, setLoading] = useState(true);
    const [search, setSearch] = useState("");
    const [activities, setActivities] = useState<Activities_Response_Api[]>([]);
+   const [motif, setMotif] = useState("");
 
    const onEntry = async () => {
       try {
@@ -30,6 +34,98 @@ export default function ActivityScreen() {
          console.error("Erreur lors du chargement :", error);
       } finally {
          setLoading(false);
+      }
+   };
+
+   const moderer = async (id_activities: string) => {
+      try {
+         if (motif === ""){
+            Toast.show(`Veuillez renseigner un motif de modération`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: 'red',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+         } else {
+            const id_user = await asyncStorage.getItem("user_id");
+            const ctrl = await moderation(id_user, id_activities, motif, false);
+            if (ctrl){
+               Toast.show(`Modération réussite`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: 'green',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+               await onEntry()
+            } else {
+               Toast.show(`Echec de la modération`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: 'red',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+            }
+         }
+      } catch (error) {
+         console.error("Erreur lors du chargement :", error);
+      }
+   };
+
+   const bannir = async (id_activities: string) => {
+      try {
+         if (motif === ""){
+            Toast.show(`Veuillez renseigner un motif de modération`, {
+               duration: Toast.durations.SHORT,
+               position: Toast.positions.TOP,
+               backgroundColor: 'red',
+               textColor: 'white',
+               shadow: true,
+               animation: true,
+               hideOnPress: true,
+               delay: 0,
+            });
+         } else {
+            const id_user = await asyncStorage.getItem("user_id");
+            const ctrl = await moderation(id_user, id_activities, motif, true);
+            if (ctrl){
+               Toast.show(`Modération réussite`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: 'green',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+               await onEntry()
+            } else {
+               Toast.show(`Echec de la modération`, {
+                  duration: Toast.durations.SHORT,
+                  position: Toast.positions.TOP,
+                  backgroundColor: 'red',
+                  textColor: 'white',
+                  shadow: true,
+                  animation: true,
+                  hideOnPress: true,
+                  delay: 0,
+               });
+            }
+         }
+      } catch (error) {
+         console.error("Erreur lors du chargement :", error);
       }
    };
 
@@ -56,10 +152,10 @@ export default function ActivityScreen() {
          <View style={styles.tabBar}>
             <TouchableOpacity style={styles.tabItem}>
                <Icon name="star-outline" size={22} color="#5b4fb3" />
-               <Text style={styles.tabText}>Mes activités</Text>
+               <Text style={styles.tabText}>Utilisateurs</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.tabItem, styles.activeTab]}>
+            <TouchableOpacity style={[styles.tabItem, styles.activeTab]} onPress={() => onEntry()}>
                <Icon name="time-outline" size={22} color="#5b4fb3" />
                <Text style={styles.tabText}>Activités</Text>
             </TouchableOpacity>
@@ -109,13 +205,13 @@ export default function ActivityScreen() {
                   </Text>
 
                   <View style={styles.button_moderer}>
-                     <TouchableOpacity >
+                     <TouchableOpacity onPress={() => moderer(item._id)}>
                         <Text style={styles.bold}> Modérer </Text>
                      </TouchableOpacity>
                   </View>
 
                      <View style={styles.button_bannir}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => bannir(item._id)}>
                            <Text style={styles.bold}> Modérer & Bannir </Text>
                         </TouchableOpacity>
                      </View>
@@ -124,7 +220,8 @@ export default function ActivityScreen() {
                         style={styles.searchInput}
                         placeholder="Motif"
                         placeholderTextColor="#999"
-                        value={search}
+                        value={motif}
+                        onChangeText={setMotif}
                      />
                   </View>
                </View>
