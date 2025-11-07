@@ -1,10 +1,9 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {Body, Controller, Get, HttpCode, HttpStatus, Post, Query} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { InscriptionResponseDto, InscriptionUserDto } from '../auth/dto/inscription';
 import { AuthService } from './auth.service';
 import { AuthPayloadAuthDto, AuthResponseDto } from './dto/auth_login';
-import { ValidationDto, ValidationResponseDto } from './dto/validation_login';
 
 @ApiTags('login')
 @Controller('login')
@@ -17,10 +16,10 @@ export class AuthController {
       return this.AuthService.Login(body.email, body.password);
    }
 
-   @Post('validation')
-   async Validation(@Body() body: ValidationDto): Promise<ValidationResponseDto> {
-      return this.AuthService.Validation(body.id_user);
-   }
+    @Get('validation')
+    async validation(@Query('token') token: string):Promise<void> {
+        return this.AuthService.Validation(token);
+    }
 
    @Post('inscription')
    async Inscription(@Body() body: InscriptionUserDto): Promise<InscriptionResponseDto> {

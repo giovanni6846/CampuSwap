@@ -5,6 +5,7 @@ import { UserModule } from '../user/user.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { jwtConstants } from './constantes';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
    imports: [
@@ -14,6 +15,7 @@ import { jwtConstants } from './constantes';
          secret: jwtConstants.secret,
          signOptions: { expiresIn: '1h' },
       }),
+       MailModule,
    ],
    controllers: [AuthController],
    providers: [AuthService],

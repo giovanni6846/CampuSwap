@@ -12,5 +12,5 @@ export class ValidationResponseDto {
    @ApiProperty()
    @IsNotEmpty()
    @IsString()
-   message!: string;
+   email!: string;
 }

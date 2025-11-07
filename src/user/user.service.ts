@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Model, Types } from 'mongoose';
 
-import { InscriptionResponseDto } from '../auth/dto/inscription';
+import {InscriptionResponseDto, InscriptionResponseDto_Activation} from '../auth/dto/inscription';
 import { ValidationResponseDto } from '../auth/dto/validation_login';
 import { UserActivities } from './dto/Add_Activities';
 import { UserAllResponseDTO } from './dto/Find_All_User';
@@ -64,7 +64,7 @@ export class UsersService {
 
       if (userValidation.IsValidate) {
          return {
-            message: 'Validation réussite, vous pouvez vous connecter',
+             email: user.email
          };
       }
 
@@ -206,7 +206,7 @@ export class UsersService {
       email: string,
       password: string,
       username: string,
-   ): Promise<InscriptionResponseDto> {
+   ): Promise<InscriptionResponseDto_Activation> {
       const user = await this._userModel.findOne({ email }).lean<UserLogin>();
 
       if (user) {
@@ -246,6 +246,7 @@ export class UsersService {
       return {
          message:
             'Utilisateur créer avec succès, vous allez recevoir un email de confirmation pour valider votre inscription',
+         id_user: userCreated._id
       };
    }
 
@@ -253,4 +254,6 @@ export class UsersService {
       const saltRounds = 10;
       return await bcrypt.hash(password, saltRounds);
    }
+
+
 }

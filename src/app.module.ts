@@ -21,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
 import { StatusModule } from './status/status.module';
 import { UserModule } from './user/user.module';
 import {SyncModule} from "./sync/sync.module";
+import { MailService } from './mail/mail.service';
 
 @Module({
    imports: [
@@ -35,6 +36,6 @@ import {SyncModule} from "./sync/sync.module";
       SyncModule,
    ],
    controllers: [],
-   providers: [],
+   providers: [MailService],
 })
 export class AppModule {}

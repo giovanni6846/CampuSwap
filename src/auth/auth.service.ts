@@ -5,12 +5,15 @@ import { UsersService } from '../user/user.service';
 import { AuthResponseDto } from './dto/auth_login';
 import { InscriptionResponseDto } from './dto/inscription';
 import { ValidationResponseDto } from './dto/validation_login';
+import { MailService} from "../mail/mail.service";
+import jwt from "jsonwebtoken";
 
 @Injectable()
 export class AuthService {
    constructor(
       private readonly UsersService: UsersService,
       private jwtService: JwtService,
+      private readonly mailService: MailService,
    ) {}
 
    async Login(email: string, password: string): Promise<AuthResponseDto> {
@@ -26,9 +29,16 @@ export class AuthService {
       };
    }
 
-   async Validation(id_user: string): Promise<ValidationResponseDto> {
-      return this.UsersService.findUserValidated(id_user);
-   }
+    async Validation(token: string):Promise<void> {
+        const payload = this.jwtService.verify(token);
+
+        const userId = payload.id_user;
+
+        const email = await this.UsersService.findUserValidated(userId);
+
+        await this.mailService.sendResponseActivationEmail(email.email);
+
+    }
 
    async Inscription(
       email: string,
@@ -52,6 +62,15 @@ export class AuthService {
       }
 
       const user = await this.UsersService.inscription(email, password, username);
+
+       jwt.sign({ id_user: user.id_user }, 's0vyuKByX43XgiINVr7RjScAHYu6g4', {
+           expiresIn: '15m',
+       });
+
+       const payload = { id_user: user.id_user };
+       const access_token = await this.jwtService.signAsync(payload);
+
+      await this.mailService.sendActivationEmail(email, access_token);
 
       return {
          message: user.message,
