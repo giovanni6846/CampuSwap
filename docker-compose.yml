@@ -21,7 +21,7 @@ services:
 
    mongo:
       image: mongo:8
-      container_name: mongo
+      container_name: mongo_dev
       environment:
          - MONGO_INITDB_DATABASE=campuswap
          - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
