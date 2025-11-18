@@ -1,9 +1,7 @@
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    image: apiswap-api-prod:latest
+    image: ghcr.io/sudo-artem-dev/apiswap-api-prod:latest
+    container_name: apiswap-prod
     ports:
       - "${API_PORT}:${API_PORT}"
     environment:
@@ -15,7 +13,7 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-    # plus de mode dynamique
+
     command: npm run start
 
   mongo:

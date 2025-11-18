@@ -54,7 +54,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: DockerfileProd.dev.dev
+      dockerfile: Dockerfile.dev.dev
     ports:
       - "3000:3000"
     volumes:

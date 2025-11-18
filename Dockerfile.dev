@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /usr/src/app
 
@@ -10,6 +10,16 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE ${API_PORT}
+FROM node:20-alpine AS production
 
-CMD ["npm", "run", "start:dev"]
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+EXPOSE 28000
+
+CMD ["npm", "start"]

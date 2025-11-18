@@ -4,12 +4,12 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
-EXPOSE 28000
+EXPOSE ${API_PORT}
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:dev"]
