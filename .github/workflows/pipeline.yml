@@ -1,0 +1,82 @@
+name: CI/CD - Build, Publish & Deploy (Backend only)     # Nom de la pipeline visible dans GitHub Actions
+
+on:                                                     # Définition des événements déclencheurs
+  push:                                                 # Le pipeline se lance lorsqu’un push est effectué
+    branches:                                           # Spécifie sur quelles branches il doit s’exécuter
+      - main                                            # Se déclenche uniquement sur la branche principale "main"
+
+permissions:                                            # Permissions d’accès accordées à la pipeline
+  contents: read                                        # Autorise la lecture du code source du repo
+  packages: write                                       # Autorise l’écriture (push) vers GitHub Container Registry (GHCR)
+
+env:                                                    # Variables d’environnement communes à tous les jobs
+  REGISTRY: ghcr.io                                     # Nom du registre Docker utilisé (GHCR)
+  IMAGE_NAME: apiswap-api-prod                      # Nom de l’image Docker du backend
+
+jobs:                                                   # Début de la section des différents jobs de la pipeline
+
+  # --------- JOB 1 : CI/CD - Build et publication Docker ----------
+  build_and_publish:                                   # 1er job : build et publication de l’image Docker du backend
+    runs-on: self-hosted                               # Utilise le runner GitHub Actions auto-hébergé (serveur CI/CD 10.6.0.7)
+    steps:                                             # Liste des étapes de ce job
+      - name: Checkout repository                      # Étape 1 : Récupération du code source
+        uses: actions/checkout@v4                      # Action officielle GitHub pour cloner le repo
+
+      # ---- BACKEND NODE (IMAGE DOCKER) ----
+      - name: Log in to GitHub Container Registry       # Étape 2 : Connexion au registre GHCR pour pouvoir pousser les images
+        uses: docker/login-action@v3                   # Action officielle pour login Docker
+        with:
+          registry: ${{ env.REGISTRY }}                # Utilise le registre défini dans env (ghcr.io)
+          username: ${{ secrets.GIT_USER }}        # Nom d’utilisateur GitHub (stocké dans les secrets)
+          password: ${{ secrets.GIT_PAT }}             # Token personnel (PAT) avec accès aux packages
+
+      - name: Build backend Docker image                # Étape 3 : Construction de l’image Docker du backend NestJS
+        run: |                                          # Exécute plusieurs commandes shell
+          docker build -f Dockerfile.prod \        # Build à partir du Dockerfile de prod
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   # Tag 1 : "latest"
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ # Tag 2 : commit SHA (version unique)
+
+      - name: Push backend image to GHCR                # Étape 4 : Envoi de l’image Docker vers GHCR
+        run: |                                          # Deux push : version latest et version commit
+          docker push $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest
+          docker push $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }}
+
+
+  # --------- JOB 2 : Déploiement sur serveur de PROD ----------
+  deploy:                                               # 2e job : déploiement automatique sur le serveur distant (10.6.0.2)
+    runs-on: self-hosted                                # Utilise le même runner CI/CD (serveur 10.6.0.7)
+    needs: build_and_publish                            # Ce job s’exécute uniquement si le build/push a réussi
+    steps:                                              # Liste des étapes du déploiement
+
+      - name: Vérifier la connexion SSH                 # Étape 1 : Teste la connexion SSH au serveur de production
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo '✅ SSH OK'"
+        # Affiche un message si la connexion est réussie
+
+      - name: Déployer le backend sur le serveur de production   # Étape 2 : Déploiement automatisé via SSH
+        uses: appleboy/ssh-action@v1.1.0                # Action GitHub permettant d’exécuter des commandes SSH à distance
+        with:
+          host: ${{ secrets.SSH_HOST }}            # IP du serveur distant (10.6.0.2)
+          username: ${{ secrets.SSH_USER }}        # Utilisateur SSH (ex : uha40)
+          key: ${{ secrets.SSH_PRIVATE_KEY }}      # Clé privée pour authentification SSH
+          script: |                                     # Liste des commandes exécutées sur le serveur distant
+
+            echo "==> Connexion à GitHub Container Registry"  
+            echo "${{ secrets.GIT_PAT }}" | docker login ghcr.io -u "${{ secrets.GIT_USER }}" --password-stdin  
+            # Connexion au registre GHCR depuis le serveur distant (pour pouvoir faire docker pull)
+
+            echo "==> Téléchargement de la dernière image backend"
+            docker pull ghcr.io/${{ secrets.GIT_USER }}/apiswap-api-prod:latest  
+            # Télécharge la dernière image Docker du backend depuis GHCR
+
+            echo "==> Mise à jour des conteneurs (backend + MongoDB)"
+            cd ~/Bureau/403-filrouge-TATKOV-Artem/cs2-case-opening  
+            # Se place dans le dossier contenant docker-compose.prod.yml
+
+            docker compose --env-file .env.prod -f docker-compose.prod.yml down  
+            # Arrête les anciens conteneurs du backend et MongoDB
+
+            docker compose --env-file .env.prod -f docker-compose.prod.yml up -d  
+            # Relance les conteneurs en arrière-plan avec la nouvelle image
+
+            echo "✅ Déploiement backend terminé avec succès."  
+            # Message final confirmant que tout s’est bien déroulé
