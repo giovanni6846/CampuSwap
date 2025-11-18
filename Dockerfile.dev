@@ -17,6 +17,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+ENV HUSKY=0
 RUN npm install --production
 
 COPY --from=builder /usr/src/app/dist ./dist
