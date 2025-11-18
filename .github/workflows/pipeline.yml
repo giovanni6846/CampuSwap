@@ -32,9 +32,9 @@ jobs:                                                   # Début de la section d
 
       - name: Build backend Docker image                # Étape 3 : Construction de l’image Docker du backend NestJS
         run: |                                          # Exécute plusieurs commandes shell
-          docker build -f Dockerfile.dev \        # Build à partir du Dockerfile de prod
-            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   # Tag 1 : "latest"
-            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ # Tag 2 : commit SHA (version unique)
+          docker build -f Dockerfile.dev       
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ 
 
       - name: Push backend image to GHCR                # Étape 4 : Envoi de l’image Docker vers GHCR
         run: |                                          # Deux push : version latest et version commit
