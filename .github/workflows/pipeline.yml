@@ -32,7 +32,7 @@ jobs:                                                   # Début de la section d
 
       - name: Build backend Docker image                # Étape 3 : Construction de l’image Docker du backend NestJS
         run: |                                          # Exécute plusieurs commandes shell
-          docker build -f Dockerfile.dev.       
+          docker build -f Dockerfile.dev .       
             -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   
             -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ 
 
