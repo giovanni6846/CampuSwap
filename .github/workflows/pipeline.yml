@@ -27,19 +27,19 @@ jobs:                                                   # Début de la section d
         uses: docker/login-action@v3                   # Action officielle pour login Docker
         with:
           registry: ${{ env.REGISTRY }}                # Utilise le registre défini dans env (ghcr.io)
-          username: ${{ secrets.GHCR_USERNAME }}        # Nom d’utilisateur GitHub (stocké dans les secrets)
-          password: ${{ secrets.GHCR_PAT }}             # Token personnel (PAT) avec accès aux packages
+          username: ${{ secrets.GIT_USER }}        # Nom d’utilisateur GitHub (stocké dans les secrets)
+          password: ${{ secrets.GIT_PAT }}             # Token personnel (PAT) avec accès aux packages
 
       - name: Build backend Docker image                # Étape 3 : Construction de l’image Docker du backend NestJS
         run: |                                          # Exécute plusieurs commandes shell
           docker build -f Dockerfile.prod \        # Build à partir du Dockerfile de prod
-            -t $REGISTRY/${{ secrets.GHCR_USERNAME }}/$IMAGE_NAME:latest \   # Tag 1 : "latest"
-            -t $REGISTRY/${{ secrets.GHCR_USERNAME }}/$IMAGE_NAME:${{ github.sha }} \ # Tag 2 : commit SHA (version unique)
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   # Tag 1 : "latest"
+            -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ # Tag 2 : commit SHA (version unique)
 
       - name: Push backend image to GHCR                # Étape 4 : Envoi de l’image Docker vers GHCR
         run: |                                          # Deux push : version latest et version commit
-          docker push $REGISTRY/${{ secrets.GHCR_USERNAME }}/$IMAGE_NAME:latest
-          docker push $REGISTRY/${{ secrets.GHCR_USERNAME }}/$IMAGE_NAME:${{ github.sha }}
+          docker push $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest
+          docker push $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }}
 
 
   # --------- JOB 2 : Déploiement sur serveur de PROD ----------
@@ -49,23 +49,23 @@ jobs:                                                   # Début de la section d
     steps:                                              # Liste des étapes du déploiement
 
       - name: Vérifier la connexion SSH                 # Étape 1 : Teste la connexion SSH au serveur de production
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER_PROD }}@${{ secrets.SSH_HOST_PROD }} "echo '✅ SSH OK'"
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo '✅ SSH OK'"
         # Affiche un message si la connexion est réussie
 
       - name: Déployer le backend sur le serveur de production   # Étape 2 : Déploiement automatisé via SSH
         uses: appleboy/ssh-action@v1.1.0                # Action GitHub permettant d’exécuter des commandes SSH à distance
         with:
-          host: ${{ secrets.SSH_HOST_PROD }}            # IP du serveur distant (10.6.0.2)
-          username: ${{ secrets.SSH_USER_PROD }}        # Utilisateur SSH (ex : uha40)
-          key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}      # Clé privée pour authentification SSH
+          host: ${{ secrets.SSH_HOST }}            # IP du serveur distant (10.6.0.2)
+          username: ${{ secrets.SSH_USER }}        # Utilisateur SSH (ex : uha40)
+          key: ${{ secrets.SSH_PRIVATE_KEY }}      # Clé privée pour authentification SSH
           script: |                                     # Liste des commandes exécutées sur le serveur distant
 
             echo "==> Connexion à GitHub Container Registry"  
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin  
+            echo "${{ secrets.GIT_PAT }}" | docker login ghcr.io -u "${{ secrets.GIT_USER }}" --password-stdin  
             # Connexion au registre GHCR depuis le serveur distant (pour pouvoir faire docker pull)
 
             echo "==> Téléchargement de la dernière image backend"
-            docker pull ghcr.io/${{ secrets.GHCR_USERNAME }}/apiswap-api-prod:latest  
+            docker pull ghcr.io/${{ secrets.GIT_USER }}/apiswap-api-prod:latest  
             # Télécharge la dernière image Docker du backend depuis GHCR
 
             echo "==> Mise à jour des conteneurs (backend + MongoDB)"
