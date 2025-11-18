@@ -4,10 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-ENV HUSKY_SKIP_INSTALL=1
-ENV HUSKY=0
-
-RUN npm install --omit=dev
+RUN npm install
 
 COPY . .
 
@@ -19,7 +16,6 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-ENV HUSKY_SKIP_INSTALL=1
 RUN npm install --production
 
 COPY --from=builder /usr/src/app/dist ./dist
