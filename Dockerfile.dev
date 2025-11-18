@@ -5,7 +5,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 ENV HUSKY_SKIP_INSTALL=1
-RUN npm install
+ENV HUSKY=0
+
+RUN npm install --omit=dev
 
 COPY . .
 
