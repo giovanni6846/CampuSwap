@@ -4,7 +4,7 @@ import { Sync } from './Sync';
 
 export async function login(username, password){
    try {
-      const response = await fetch("http://10.205.124.106:28000/login", {
+      const response = await fetch("http://10.6.0.7:28000/login", {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',

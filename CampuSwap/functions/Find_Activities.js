@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function All_activities(){
    try {
-      const response = await fetch("http://10.205.124.106:28000/activities/findAll", {
+      const response = await fetch("http://10.6.0.7:28000/activities/findAll", {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ export const maj_offline = async () => {
       const userId = await AsyncStorage.getItem("user_id");
 
       for (const id_activity of list) {
-         const response = await fetch(`http://10.205.124.106:28000/activities/desinscription`, {
+         const response = await fetch(`http://10.6.0.7:28000/activities/desinscription`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const maj_offline = async () => {
       const userId2 = await AsyncStorage.getItem("user_id");
 
       for (const id_activity of list2) {
-         const response = await fetch(`http://10.205.124.106:28000/activities/desinscription`, {
+         const response = await fetch(`http://10.6.0.7:28000/activities/desinscription`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Mise en place écran MVP 2 + gestion du compte administrateur">
-      <change afterPath="$PROJECT_DIR$/CampuSwap/app/create.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Create_user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CampuSwap/functions/Moderer_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/CampuSwap/app/login.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +38,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/giovanni6846/CampuSwap.git&quot;,
-    &quot;accountId&quot;: &quot;041b7f31-1acc-4bf4-986d-113eb6e65b7a&quot;
+    &quot;accountId&quot;: &quot;c5085612-4b21-456e-8138-1944f7450a81&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -63,7 +58,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;PRO403-11-APM&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/styles/activities&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -71,6 +68,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -113,6 +111,9 @@
       <workItem from="1762416594074" duration="11810000" />
       <workItem from="1762433974895" duration="7559000" />
       <workItem from="1762501772518" duration="7177000" />
+      <workItem from="1763123010540" duration="4000" />
+      <workItem from="1763123948930" duration="900000" />
+      <workItem from="1763458929300" duration="3000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />

@@ -3,7 +3,7 @@ import { initDatabase, syncActivities } from '../database/database';
 
 export async function Sync(){
    try {
-      const response = await fetch(`http://10.205.124.106:28000/sync/pull?id_user=${await AsyncStorage.getItem('user_id')}`, {
+      const response = await fetch(`http://10.6.0.7:28000/sync/pull?id_user=${await AsyncStorage.getItem('user_id')}`, {
          method: 'GET',
          headers: {
             'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ export async function Test(){
    }*/
 
    try {
-      const response = await fetch('http://10.205.124.106:28000/status', {
+      const response = await fetch('http://10.6.0.7:28000/status', {
          method: 'GET',
          headers: { 'Content-Type': 'application/json' },
       });

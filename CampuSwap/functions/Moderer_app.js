@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function moderation(user_id, activity_id, motif, isBan){
    try {
-      const response = await fetch("http://10.205.124.106:28000/activities/moderation", {
+      const response = await fetch("http://10.6.0.7:28000/activities/moderation", {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',

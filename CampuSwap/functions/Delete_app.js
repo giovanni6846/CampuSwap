@@ -3,7 +3,7 @@ import { initDatabase, syncActivities } from '../database/database';
 
 export async function delete_act(id) {
    try {
-       await fetch(`http://10.205.124.106:28000/activities/suppression`, {
+       await fetch(`http://10.6.0.7:28000/activities/suppression`, {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export async function create_user(email, password, username){
    try {
-       const response = await fetch("http://10.205.124.106:28000/login/inscription", {
+       const response = await fetch("http://10.6.0.7:28000/login/inscription", {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
