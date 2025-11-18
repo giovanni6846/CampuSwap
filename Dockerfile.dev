@@ -22,4 +22,5 @@ COPY --from=builder /usr/src/app/dist ./dist
 
 EXPOSE 28000
 
-CMD ["npm", "start"]
+CMD ["node", "dist/main.js"]
+
