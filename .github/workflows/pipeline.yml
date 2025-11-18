@@ -32,7 +32,7 @@ jobs:                                                   # Début de la section d
 
       - name: Build backend Docker image                # Étape 3 : Construction de l’image Docker du backend NestJS
         run: |                                          # Exécute plusieurs commandes shell
-          docker build -f Dockerfile.prod \        # Build à partir du Dockerfile de prod
+          docker build -f Dockerfile.dev \        # Build à partir du Dockerfile de prod
             -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:latest \   # Tag 1 : "latest"
             -t $REGISTRY/${{ secrets.GIT_USER }}/$IMAGE_NAME:${{ github.sha }} \ # Tag 2 : commit SHA (version unique)
 
@@ -69,13 +69,13 @@ jobs:                                                   # Début de la section d
             # Télécharge la dernière image Docker du backend depuis GHCR
 
             echo "==> Mise à jour des conteneurs (backend + MongoDB)"
-            cd ~/Bureau/403-filrouge-TATKOV-Artem/cs2-case-opening  
-            # Se place dans le dossier contenant docker-compose.prod.yml
+            cd ~/Documents/403-filrouge-MIRO-Giovanni/campuSwap  
+            # Se place dans le dossier contenant docker-compose.yml
 
-            docker compose --env-file .env.prod -f docker-compose.prod.yml down  
+            docker compose --env-file .env -f docker-compose.yml down  
             # Arrête les anciens conteneurs du backend et MongoDB
 
-            docker compose --env-file .env.prod -f docker-compose.prod.yml up -d  
+            docker compose --env-file .env -f docker-compose.yml up -d  
             # Relance les conteneurs en arrière-plan avec la nouvelle image
 
             echo "✅ Déploiement backend terminé avec succès."  
