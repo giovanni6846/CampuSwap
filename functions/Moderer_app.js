@@ -14,6 +14,7 @@ export async function moderation(user_id, activity_id, motif, isBan){
             motif: motif,
             moderation: isBan,
          }),
+          mode: "cors",
       });
       return await response.json();
    } catch (error) {

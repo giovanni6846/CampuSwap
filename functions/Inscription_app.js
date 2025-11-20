@@ -12,6 +12,7 @@ export async function Inscription(user_id, activity_id){
             id_user: user_id,
             id_activities: activity_id,
          }),
+          mode: "cors",
       });
       return await response.json();
    } catch (error) {

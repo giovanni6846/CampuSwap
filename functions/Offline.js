@@ -27,6 +27,7 @@ export const maj_offline = async () => {
                id_user: userId,
                id_activities: id_activity,
             }),
+             mode: "cors",
          });
 
          if (response.ok) {
@@ -63,6 +64,7 @@ export const maj_offline = async () => {
                id_user: userId2,
                id_activities: id_activity,
             }),
+             mode: "cors",
          });
 
          if (response.ok) {

@@ -13,6 +13,7 @@ export async function Test(){
       const response = await fetch('http://10.6.0.7:28000/status', {
          method: 'GET',
          headers: { 'Content-Type': 'application/json' },
+          mode: "cors",
       });
       await AsyncStorage.setItem('connected', 'false');
       if (response.ok) {

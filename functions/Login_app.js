@@ -13,6 +13,7 @@ export async function login(username, password){
             email: username,
             password: password,
          }),
+          mode: "cors",
       });
       const data = await response.json();
       if (!data.error) {

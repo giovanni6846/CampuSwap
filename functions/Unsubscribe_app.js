@@ -13,6 +13,7 @@ export async function unsubscribe_act(id) {
             id_user: await AsyncStorage.getItem('user_id'),
             id_activities: id,
          }),
+           mode: "cors",
       });
 
      return true

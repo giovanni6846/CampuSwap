@@ -8,6 +8,7 @@ export async function All_activities(){
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + await AsyncStorage.getItem('authToken'),
          },
+          mode: "cors",
       });
       return await response.json();
    } catch (error) {

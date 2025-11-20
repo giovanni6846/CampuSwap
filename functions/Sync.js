@@ -9,6 +9,7 @@ export async function Sync(){
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + await AsyncStorage.getItem('authToken')
          },
+          mode: "cors",
       });
 
       initDatabase();

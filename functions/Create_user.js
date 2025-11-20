@@ -12,6 +12,7 @@ export async function create_user(email, password, username){
             password: password,
             username: username,
          }),
+         mode: "cors",
       });
 
        return response.json();

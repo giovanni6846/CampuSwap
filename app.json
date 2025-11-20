@@ -13,6 +13,7 @@
       "bundleIdentifier": "com.anonymous.CampuSwap"
     },
     "android": {
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./pictures/icones/logo2.png",
