@@ -29,7 +29,7 @@ jobs:
 
       - name: Auth Expo
         run: |
-          eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
+          eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }} --non-interactive
       
 
       - name: Publish OTA
