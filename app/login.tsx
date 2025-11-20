@@ -83,7 +83,7 @@ export default function LoginScreen() {
       <View style={styles.container}>
          <Image
             style={styles.logo}
-            source={require("./pictures/icones/logo.png")}
+            source={require("../pictures/icones/logo.png")}
          />
          <Text style={styles.title}>Connexion</Text>
          <TextInput

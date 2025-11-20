@@ -4,7 +4,7 @@
     "slug": "CampuSwap",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./pictures/icones/logo.png",
+    "icon": "./pictures/icones/logo2.png",
     "scheme": "campuswap",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -15,9 +15,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./pictures/icones/logo.png",
-        "backgroundImage": "./pictures/icones/logo.png",
-        "monochromeImage": "./pictures/icones/logo.png"
+        "foregroundImage": "./pictures/icones/logo2.png",
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,

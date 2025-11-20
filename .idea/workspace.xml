@@ -4,49 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction des IP pour le déploiement CI-CD">
-      <change afterPath="$PROJECT_DIR$/app/user.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/activities.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/app/user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pipeline.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/constants/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/theme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/database/async_storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/async_storage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/database/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/database/delete_all.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/delete_all.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/database/delete_enreg.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/delete_enreg.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/database/read.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/read.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Create_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Create_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Delete_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Delete_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Find_Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Find_Activities.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Inscription_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Inscription_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Login_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Moderer_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Moderer_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Offline.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Unsubscribe_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Unsubscribe_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/pictures/icones/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/pictures/icones/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/activities/styles_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/activities/styles_menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/admin/styles_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/admin/styles_admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/index/styles_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index/styles_index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/menu/styles_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/menu/styles_menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CampuSwap/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction fichier YML">
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +117,7 @@
       <workItem from="1763123948930" duration="900000" />
       <workItem from="1763458929300" duration="3000" />
       <workItem from="1763474093714" duration="549000" />
-      <workItem from="1763626178400" duration="1586000" />
+      <workItem from="1763626178400" duration="3497000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -232,7 +191,47 @@
       <option name="project" value="LOCAL" />
       <updated>1763474245235</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Nouvelle architecture projet + Déploiement continue application mobile">
+      <option name="closed" value="true" />
+      <created>1763627781849</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763627781849</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Nouvelle architecture projet + Déploiement continue application mobile">
+      <option name="closed" value="true" />
+      <created>1763627790194</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763627790194</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Correction fichier YML">
+      <option name="closed" value="true" />
+      <created>1763628015563</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763628015563</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Correction fichier YML">
+      <option name="closed" value="true" />
+      <created>1763629065631</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763629065631</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Correction fichier YML">
+      <option name="closed" value="true" />
+      <created>1763629247607</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763629247607</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +263,8 @@
     <MESSAGE value="Correction pour le changement d'utilisateur" />
     <MESSAGE value="Mise en place écran MVP 2 + gestion du compte administrateur" />
     <MESSAGE value="Correction des IP pour le déploiement CI-CD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction des IP pour le déploiement CI-CD" />
+    <MESSAGE value="Nouvelle architecture projet + Déploiement continue application mobile" />
+    <MESSAGE value="Correction fichier YML" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction fichier YML" />
   </component>
 </project>
