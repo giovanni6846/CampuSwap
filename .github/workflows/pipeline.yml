@@ -27,8 +27,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Log into Expo
-        run: eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
+      - name: Auth Expo
+        run: |
+          eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
+      
 
       - name: Publish OTA
         run: eas update --auto
