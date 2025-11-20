@@ -4,8 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Mise en place écran MVP 2 + gestion du compte administrateur">
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction des IP pour le déploiement CI-CD">
+      <change afterPath="$PROJECT_DIR$/app/user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/activities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/admin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/app/user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pipeline.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/constants/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/async_storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/async_storage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/delete_all.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/delete_all.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/delete_enreg.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/delete_enreg.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/database/read.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/read.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Create_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Create_user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Delete_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Delete_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Find_Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Find_Activities.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Inscription_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Inscription_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Login_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Moderer_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Moderer_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Offline.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/functions/Unsubscribe_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Unsubscribe_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/pictures/icones/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/pictures/icones/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/activities/styles_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/activities/styles_menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/admin/styles_admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/admin/styles_admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/index/styles_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/index/styles_index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/styles/menu/styles_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/menu/styles_menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CampuSwap/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,38 +93,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PRO403-11-APM&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/styles/activities&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/giovanni/WebstormProjects/CampuSwap_Mobile/CampuSwap/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "PRO403-11-APM",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/giovanni/WebstormProjects/CampuSwap_Mobile",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/home/giovanni/WebstormProjects/CampuSwap_Mobile/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/CampuSwap/styles/activities" />
       <recent name="$PROJECT_DIR$/CampuSwap/pictures/icones" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/CampuSwap/app" />
     </key>
   </component>
@@ -114,6 +157,8 @@
       <workItem from="1763123010540" duration="4000" />
       <workItem from="1763123948930" duration="900000" />
       <workItem from="1763458929300" duration="3000" />
+      <workItem from="1763474093714" duration="549000" />
+      <workItem from="1763626178400" duration="1586000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -179,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762443327281</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Correction des IP pour le déploiement CI-CD">
+      <option name="closed" value="true" />
+      <created>1763474245235</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763474245235</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +263,7 @@
     <MESSAGE value="Fin du MVP1 + correctif bug" />
     <MESSAGE value="Correction pour le changement d'utilisateur" />
     <MESSAGE value="Mise en place écran MVP 2 + gestion du compte administrateur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise en place écran MVP 2 + gestion du compte administrateur" />
+    <MESSAGE value="Correction des IP pour le déploiement CI-CD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction des IP pour le déploiement CI-CD" />
   </component>
 </project>
