@@ -13,7 +13,6 @@
       "bundleIdentifier": "com.anonymous.CampuSwap"
     },
     "android": {
-      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./pictures/icones/logo2.png"
@@ -27,12 +26,7 @@
       "favicon": "./pictures/icones/logo.png"
     },
     "plugins": [
-      [
-        "expo-android-allow-cleartext",
-        {
-          "cleartext": true
-        }
-      ],
+      "./cleartext-plugin",
       "expo-router",
       [
         "expo-splash-screen",
