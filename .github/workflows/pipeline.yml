@@ -3,7 +3,7 @@ name: Deploy Mobile Application
 on:
   push:
     branches:
-      - main
+      - PRO403-11-APM
 
 permissions:
   contents: read
