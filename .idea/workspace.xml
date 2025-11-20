@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="App.json + logo">
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Create_user.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Create_user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Delete_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Delete_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Find_Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Find_Activities.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Inscription_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Inscription_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Login_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Moderer_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Moderer_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Offline.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Unsubscribe_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Unsubscribe_app.js" afterDir="false" />
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="MAJ APP Mobile pour cors">
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +117,7 @@
       <workItem from="1763123948930" duration="900000" />
       <workItem from="1763458929300" duration="3000" />
       <workItem from="1763474093714" duration="549000" />
-      <workItem from="1763626178400" duration="5811000" />
+      <workItem from="1763626178400" duration="6784000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -249,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763629730034</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="MAJ APP Mobile pour cors">
+      <option name="closed" value="true" />
+      <created>1763632284616</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763632284616</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +282,7 @@
     <MESSAGE value="Nouvelle architecture projet + Déploiement continue application mobile" />
     <MESSAGE value="Correction fichier YML" />
     <MESSAGE value="App.json + logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="App.json + logo" />
+    <MESSAGE value="MAJ APP Mobile pour cors" />
+    <option name="LAST_COMMIT_MESSAGE" value="MAJ APP Mobile pour cors" />
   </component>
 </project>

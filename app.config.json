@@ -16,7 +16,7 @@
       "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./pictures/icones/logo2.png",
+        "foregroundImage": "./pictures/icones/logo2.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -27,6 +27,12 @@
       "favicon": "./pictures/icones/logo.png"
     },
     "plugins": [
+      [
+        "expo-android-allow-cleartext",
+        {
+          "cleartext": true
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
