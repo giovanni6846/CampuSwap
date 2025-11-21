@@ -68,7 +68,7 @@ jobs:
 
             echo "==> Mise à jour des conteneurs (backend + MongoDB)"
             cd ~/Documents/403-filrouge-MIRO-Giovanni/campuSwap  
-
+ 
             docker compose --env-file .env -f docker-compose.yml down  
 
             docker compose --env-file .env -f docker-compose.yml up -d  
