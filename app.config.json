@@ -26,7 +26,6 @@
       "favicon": "./pictures/icones/logo.png"
     },
     "plugins": [
-      "./cleartext-plugin",
       "expo-router",
       [
         "expo-splash-screen",
