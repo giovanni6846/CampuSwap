@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Maj pipeline.yml">
+    <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Test CI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +122,7 @@
       <workItem from="1763626178400" duration="8740000" />
       <workItem from="1763711083247" duration="3193000" />
       <workItem from="1763735204366" duration="653000" />
-      <workItem from="1763972227806" duration="1390000" />
+      <workItem from="1763972227806" duration="2123000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -306,7 +308,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763973373704</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Test CI">
+      <option name="closed" value="true" />
+      <created>1763973870485</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1763973870485</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,6 +355,7 @@
     <MESSAGE value="Maj correction app mobile" />
     <MESSAGE value="Suppression extensions" />
     <MESSAGE value="Maj pipeline.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maj pipeline.yml" />
+    <MESSAGE value="Test CI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test CI" />
   </component>
 </project>

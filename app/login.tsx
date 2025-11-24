@@ -71,7 +71,7 @@ export default function LoginScreen() {
             hideOnPress: true,
             delay: 0,
          });
-          Toast.show(`Route vers login avec la mise à jour`, {
+          Toast.show(`Route vers login avec le update qui fonctionne à merveille`, {
               duration: Toast.durations.SHORT,
               position: Toast.positions.TOP,
               backgroundColor: 'green', // vert
