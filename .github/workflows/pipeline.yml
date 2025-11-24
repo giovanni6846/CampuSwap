@@ -34,3 +34,5 @@ jobs:
 
       - name: Publish OTA
         run: eas update --auto --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
