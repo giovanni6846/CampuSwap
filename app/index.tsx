@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import * as Updates from "expo-updates";
+import Toast from "react-native-root-toast";
 
 export default function Index() {
     const router = useRouter();
@@ -17,13 +18,22 @@ export default function Index() {
                     await Updates.fetchUpdateAsync();
                     // Recharge l'application sur la nouvelle version
                     await Updates.reloadAsync();
-                    return; // On stoppe ici sinon ça continue la navigation
+                    return;
                 }
             } catch (error) {
                 console.log("Erreur pendant l'update OTA:", error);
             }
 
-            // Si pas de mise à jour => on continue vers /login
+            Toast.show(`Route vers login`, {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.TOP,
+                backgroundColor: 'red', // vert
+                textColor: 'white',
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+            });
             router.push("/login");
         }
 

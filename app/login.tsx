@@ -71,6 +71,16 @@ export default function LoginScreen() {
             hideOnPress: true,
             delay: 0,
          });
+          Toast.show(`Route vers login avec la mise à jour`, {
+              duration: Toast.durations.SHORT,
+              position: Toast.positions.TOP,
+              backgroundColor: 'green', // vert
+              textColor: 'white',
+              shadow: true,
+              animation: true,
+              hideOnPress: true,
+              delay: 0,
+          });
          router.replace('/activities');
       }
    };
