@@ -13,8 +13,13 @@ export async function Test(){
       const response = await fetch('http://10.6.0.7:28000/status', {
          method: 'GET',
          headers: { 'Content-Type': 'application/json' },
-          mode: "cors",
       });
+       console.log("STATUS:", response.status);
+
+       const data = await response.json();
+
+       console.log("DATA:", data);
+
       await AsyncStorage.setItem('connected', 'false');
       if (response.ok) {
          const data = await response.json();

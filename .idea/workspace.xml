@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction MAJ APP Mobile">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/pipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pipeline.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +122,7 @@
       <workItem from="1763735204366" duration="653000" />
       <workItem from="1763972227806" duration="2123000" />
       <workItem from="1763975558835" duration="2400000" />
-      <workItem from="1764058742019" duration="6337000" />
+      <workItem from="1764058742019" duration="7020000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -354,7 +348,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763977464063</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Correction MAJ APP Mobile">
+      <option name="closed" value="true" />
+      <created>1764065976146</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764065976146</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Correction MAJ APP Mobile">
+      <option name="closed" value="true" />
+      <created>1764066150722</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764066150722</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
