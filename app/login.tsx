@@ -64,23 +64,13 @@ export default function LoginScreen() {
          Toast.show(`${response.message}`, {
             duration: Toast.durations.SHORT,
             position: Toast.positions.TOP,
-            backgroundColor: 'red', // vert
+            backgroundColor: 'red',
             textColor: 'white',
             shadow: true,
             animation: true,
             hideOnPress: true,
             delay: 0,
          });
-          Toast.show(`Route vers login avec le update qui fonctionne à merveille meme aprs la maj`, {
-              duration: Toast.durations.SHORT,
-              position: Toast.positions.TOP,
-              backgroundColor: 'green', // vert
-              textColor: 'white',
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              delay: 0,
-          });
          router.replace('/activities');
       }
    };

@@ -8,7 +8,10 @@
     "scheme": "campuswap",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.CampuSwap"
@@ -50,13 +53,17 @@
     "updates": {
       "enabled": true,
       "checkAutomatically": "ON_LOAD",
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/6b315c77-102f-4673-a73d-e172c15ae8fc"
     },
     "extra": {
       "router": {},
       "eas": {
         "projectId": "6b315c77-102f-4673-a73d-e172c15ae8fc"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

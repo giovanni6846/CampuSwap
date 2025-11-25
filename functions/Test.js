@@ -27,6 +27,6 @@ export async function Test(){
 
    } catch (error) {
       await AsyncStorage.setItem('connected', 'false');
-      return { ok: false, status: 'unreachable', message: "Serveur non joignable." };
+      return { ok: false, status: 'unreachable', message: "Serveur non joignable, veuillez réessayer plus tard." };
    }
 }

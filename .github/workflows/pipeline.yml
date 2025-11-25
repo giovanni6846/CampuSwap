@@ -34,4 +34,4 @@ jobs:
         run: eas whoami
 
       - name: Publish OTA
-        run: eas update --auto --platform android
+        run:  eas update --channel preview
