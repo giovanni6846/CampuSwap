@@ -19,7 +19,7 @@ export class MailService {
     }
 
     async sendActivationEmail(to: string, token: string) {
-        const activationLink = `http://10.205.124.106:28000/login/validation?token=${token}`;
+        const activationLink = `http://10.6.0.7:28000/login/validation?token=${token}`;
 
         await this.transporter.sendMail({
             from: '"Support" <no-reply@ton-site.com>',
