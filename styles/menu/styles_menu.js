@@ -116,7 +116,9 @@ export default StyleSheet.create({
     addbut: {
         backgroundColor: '#00994d',
         borderRadius: 10,
+        paddingVertical: 12,
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 50,
+        marginTop: 8,
     },
 });
