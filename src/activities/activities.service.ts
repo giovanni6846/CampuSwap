@@ -157,12 +157,10 @@ export class ActivitiesService {
          .find(filter)
          .lean<SearchActivitiesResponseDto>();
 
-      if (!activities_created) {
+      if (!activities_created[0]._id) {
          throw new InternalServerErrorException('Erreur lors de la création');
       }
 
-      console.log('avant')
-       console.log(activities_created);
        await this.UsersService.addActivities(user_created, activities_created[0]._id);
 
       return {
