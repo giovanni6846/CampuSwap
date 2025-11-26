@@ -11,6 +11,10 @@ import { Sync } from '../functions/Sync';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import Slot = Navigator.Slot;
 import { Test } from '../functions/Test';
+import {delete_act} from "../functions/Delete_app";
+import {delete_enreg} from "../database/delete_enreg";
+import {read} from "node:fs";
+import {appendToStorage} from "../database/async_storage";
 
 const { width } = Dimensions.get('window'); // 🔹 largeur écran pour le rendu plein écran
 
@@ -29,6 +33,7 @@ export default function ActivityScreen() {
    const [search, setSearch] = useState("");
    const [loading, setLoading] = useState(true);
    const [activities, setActivities] = useState<Activities_Response_Api[]>([]);
+    const [userId, setUserId] = useState<string | null>(null);
 
    const inscription = async (id:string) => {
       await Test();
@@ -73,8 +78,32 @@ export default function ActivityScreen() {
       }
    };
 
+    const deleted = async (id: string) => {
+        await Test();
+        if (await AsyncStorage.getItem('connected') === 'true'){
+            if ( await AsyncStorage.getItem('log') === 'true'){
+                const response = await delete_act(id);
+                if (response) {
+                    delete_enreg(id)
+                    Toast.show(`Suppression de l'activité réussit !`, {
+                        duration: Toast.durations.SHORT,
+                        position: Toast.positions.TOP,
+                        backgroundColor: '#28a745',
+                        textColor: 'white',
+                        shadow: true,
+                        animation: true,
+                        hideOnPress: true,
+                        delay: 0,
+                    });
+                }
+            }
+        }
+    };
+
    const fetchActivities = async () => {
-      try {
+       const id = await AsyncStorage.getItem('user_id')
+       setUserId(id);
+       try {
          const response = await All_activities();
          setActivities(response);
       } catch (error) {
@@ -177,18 +206,28 @@ export default function ActivityScreen() {
                      {item.user_created}
                   </Text>
 
-                  <TouchableOpacity
-                     style={[
-                        styles.button,
-                        { backgroundColor: parseInt(item.seat, 10) > 0 ? '#00994d' : '#ccc' },
-                     ]}
-                     disabled={parseInt(item.seat, 10) === 0}
-                     onPress={() => inscription(item._id)}
-                  >
-                     <Text style={styles.buttonText}>
-                        {parseInt(item.seat, 10) > 0 ? "S'inscrire" : "Complet"}
-                     </Text>
-                  </TouchableOpacity>
+                   {item.user_created === userId && (
+                       <View style={styles.button}>
+                           <TouchableOpacity onPress={() => deleted(item._id)}>
+                               <Text style={styles.bold}>Supprimer l&#39;activité</Text>
+                           </TouchableOpacity>
+                       </View>
+                   )}
+
+                   {item.user_created !== userId && (
+                       <TouchableOpacity
+                           style={[
+                               styles.button,
+                               { backgroundColor: parseInt(item.seat, 10) > 0 ? '#00994d' : '#ccc' },
+                           ]}
+                           disabled={parseInt(item.seat, 10) === 0}
+                           onPress={() => inscription(item._id)}
+                       >
+                           <Text style={styles.buttonText}>
+                               {parseInt(item.seat, 10) > 0 ? "S'inscrire" : "Complet"}
+                           </Text>
+                       </TouchableOpacity>
+                   )}
                </View>
             )}
          />
