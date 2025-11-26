@@ -193,12 +193,10 @@ export default function ActivityScreen() {
             )}
          />
           <TouchableOpacity
-              style={[
-                  styles.addbut,
-              ]}
+              style={[styles.addbut,]}
               onPress={() => router.push('./add_activities')}
           >
-              <Text style={styles.buttonText}>
+              <Text>
                  +
               </Text>
           </TouchableOpacity>

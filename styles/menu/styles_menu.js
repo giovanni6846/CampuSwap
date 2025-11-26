@@ -114,10 +114,11 @@ export default StyleSheet.create({
       marginBottom: 20,
    },
     addbut: {
-        backgroundColor: 'green',
+        backgroundColor: '#00994d',
         borderRadius: 10,
+        paddingVertical: 12,
         alignItems: 'center',
-        width: '25px',
-        height: '25px',
-    }
+        marginBottom: 20,
+        marginTop: 8,
+    },
 });
