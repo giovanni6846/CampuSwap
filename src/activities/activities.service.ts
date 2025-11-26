@@ -124,12 +124,14 @@ export class ActivitiesService {
         }*/
       for (const users_activities of user.activities) {
          const activities = await this._ActivitiesModel.findById(users_activities);
-
+        console.log(users_activities);
+        console.log(activities);
          if (!activities) {
             throw new NotFoundException({
                message: "L'activité utilisateur est indisponible",
             });
          }
+
          if (datdeb < activities.datfin && datfin > activities.datfin) {
             throw new ConflictException({
                message:
