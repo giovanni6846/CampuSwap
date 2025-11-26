@@ -111,14 +111,13 @@ export default StyleSheet.create({
    arrowContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginBottom: 40,
+      marginBottom: 20,
    },
     addbut: {
         backgroundColor: 'green',
         borderRadius: 10,
-        paddingVertical: 12,
-        alignItems: 'right',
-        marginBottom: 20,
-        marginTop: 8,
+        alignItems: 'center',
+        width: '25px',
+        height: '25px',
     }
 });
