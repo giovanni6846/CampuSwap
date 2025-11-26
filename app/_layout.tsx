@@ -14,14 +14,7 @@ export default function Layout() {
     // 🔄 Si le téléchargement est fini → proposer de recharger
     useEffect(() => {
         if (isUpdatePending) {
-            Alert.alert(
-                "Mise à jour prête",
-                "Une nouvelle version est prête à être installée.",
-                [
-                    { text: "Plus tard", style: "cancel" },
-                    { text: "Installer", onPress: () => Updates.reloadAsync() }
-                ]
-            );
+            Updates.reloadAsync()
         }
     }, [isUpdatePending]);
 
@@ -33,24 +26,7 @@ export default function Layout() {
                     const update = await Updates.checkForUpdateAsync();
 
                     if (update.isAvailable) {
-                        Alert.alert(
-                            "Mise à jour disponible",
-                            "Une nouvelle version est disponible. Voulez-vous l’installer ?",
-                            [
-                                { text: "Plus tard", style: "cancel" },
-                                {
-                                    text: "Télécharger",
-                                    onPress: async () => {
-                                        try {
-                                            await Updates.fetchUpdateAsync();
-                                            Alert.alert("Téléchargement terminé 🎉", "Installation en cours…");
-                                        } catch (e) {
-                                            Alert.alert("Erreur", "Impossible de télécharger la mise à jour.");
-                                        }
-                                    }
-                                }
-                            ]
-                        );
+                        await Updates.fetchUpdateAsync();
                     }
                 }
             } catch (error) {
