@@ -13,7 +13,7 @@ export async function create_activities(name, description, startDate, endDate, s
                 datdeb: startDate,
                 datfin: endDate,
                 description: description,
-                seats: seats,
+                seats: Number(seats),
                 user_created: await AsyncStorage.getItem('user_id'),
             }),
         });
