@@ -98,6 +98,7 @@ export default function ActivityScreen() {
                 }
             }
         }
+        router.push('/menu');
     };
 
    const fetchActivities = async () => {

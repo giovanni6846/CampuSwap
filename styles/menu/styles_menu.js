@@ -118,7 +118,5 @@ export default StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         marginBottom: 20,
-        width: '40%',
-        height: '30%',
     },
 });

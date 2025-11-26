@@ -13,6 +13,7 @@ import { appendToStorage } from '../database/async_storage';
 import { delete_act } from '../functions/Delete_app';
 import { Sync } from '../functions/Sync';
 import { maj_offline } from '../functions/Offline';
+import {sync} from "glob";
 
 const { width } = Dimensions.get('window');
 
@@ -35,6 +36,12 @@ export default function ActivityScreen() {
    const fetchActivities = async () => {
       const id = await AsyncStorage.getItem('user_id')
       setUserId(id);
+       await Test();
+       if (await AsyncStorage.getItem('connected') === 'true') {
+           if (await AsyncStorage.getItem('log') === 'true') {
+                await Sync();
+           }
+       }
       try {
          const response = await read();
          setActivities(response);
