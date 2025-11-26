@@ -148,11 +148,12 @@ export class ActivitiesService {
       });
 
       const filter: any = {};
+       const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
       if (name) {
-         filter.name = { $regex: name, $options: 'i' };
+         filter.name = { $regex: escapeRegex(name), $options: 'i' };
       }
-      const activities_created = this._ActivitiesModel
+      const activities_created = await this._ActivitiesModel
          .find(filter)
          .lean<SearchActivitiesResponseDto>();
 
@@ -160,6 +161,8 @@ export class ActivitiesService {
          throw new InternalServerErrorException('Erreur lors de la création');
       }
 
+      console.log('avant')
+       console.log(activities_created);
        await this.UsersService.addActivities(user_created, activities_created[0]._id);
 
       return {
