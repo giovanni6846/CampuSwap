@@ -54,7 +54,7 @@ export default StyleSheet.create({
       shadowRadius: 5,
       elevation: 4,
       marginBottom: 20,
-      height: "75%"
+      height: "85%"
    },
    title: {
       fontSize: 18,
@@ -120,5 +120,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginBottom: 50,
         marginTop: 8,
+        width: '50%',
     },
 });

@@ -54,7 +54,7 @@ export default StyleSheet.create({
       shadowRadius: 5,
       elevation: 4,
       marginBottom: 20,
-      height: "75%"
+      height: "85%"
    },
    title: {
       fontSize: 18,

@@ -268,11 +268,13 @@ export default function ActivityScreen() {
                      {item.user_created}
                   </Text>
 
-                  <View style={styles.button}>
-                     <TouchableOpacity onPress={() => unsubscribe(item.id)}>
-                        <Text style={styles.bold}> Se désinscrire </Text>
-                     </TouchableOpacity>
-                  </View>
+                   {item.user_created !== userId && (
+                      <View style={styles.button}>
+                         <TouchableOpacity onPress={() => unsubscribe(item.id)}>
+                            <Text style={styles.bold}> Se désinscrire </Text>
+                         </TouchableOpacity>
+                      </View>
+                   )}
 
                   {item.user_created === userId && (
                      <View style={styles.button}>
