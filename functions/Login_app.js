@@ -15,6 +15,7 @@ export async function login(username, password){
          }),
           mode: "cors",
       });
+      console.log(response);
       const data = await response.json();
       if (!data.error) {
          const storedUserId = await AsyncStorage.getItem("user_id");

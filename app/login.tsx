@@ -28,7 +28,9 @@ export default function LoginScreen() {
          Alert.alert("Veuillez renseigner les champs identifiant / password");
       } else {
          await AsyncStorage.setItem('log','false');
+         console.log("avant")
          const response = await login(email, password) as LoginApiResponse;
+          console.log("apres")
          if (response.error) {
             setError(`Erreur ${response.statusCode} : ${response.message}`);
          } else {

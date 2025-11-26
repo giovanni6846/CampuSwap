@@ -113,4 +113,12 @@ export default StyleSheet.create({
       justifyContent: 'space-between',
       marginBottom: 40,
    },
+    addbut: {
+        backgroundColor: 'green',
+        borderRadius: 10,
+        paddingVertical: 12,
+        alignItems: 'right',
+        marginBottom: 20,
+        marginTop: 8,
+    }
 });

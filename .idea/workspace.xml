@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Correction MAJ APP Mobile">
+      <change afterPath="$PROJECT_DIR$/network/network_security_config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/Login_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Login_app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/menu/styles_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/styles/menu/styles_menu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +132,8 @@
       <workItem from="1763735204366" duration="653000" />
       <workItem from="1763972227806" duration="2123000" />
       <workItem from="1763975558835" duration="2400000" />
-      <workItem from="1764058742019" duration="8564000" />
+      <workItem from="1764058742019" duration="9064000" />
+      <workItem from="1764144290491" duration="6198000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -373,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764066683992</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Correction MAJ APP Mobile">
+      <option name="closed" value="true" />
+      <created>1764071836391</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1764071836391</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

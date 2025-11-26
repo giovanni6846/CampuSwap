@@ -28,5 +28,4 @@ export async function Test(){
       return { ok: false, status: 'unreachable', message: "Serveur non joignable, veuillez réessayer plus tard." };
 
    }
-
 }
