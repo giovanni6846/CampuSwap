@@ -125,7 +125,9 @@ export class UsersService {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
 
-      for (const activity of user.activities) {
+       user.activities = user.activities.map(id => id.toString());
+
+       for (const activity of user.activities) {
           console.log(activity);
           console.log(user.activities);
          if (activity == id_activities) {
@@ -141,7 +143,7 @@ export class UsersService {
    async delActivities(id_user: string, id_activities: string): Promise<void> {
       const list = await this._userModel.findById(id_user).lean<UserActivities>();
 
-      if (!list) {
+       if (!list) {
          throw new NotFoundException(`Utilisateur inexistant`);
       }
 
