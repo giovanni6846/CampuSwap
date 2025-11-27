@@ -113,6 +113,7 @@ export class UsersService {
          });
       }
 
+      id_activities = id_activities.toString();
       await this._userModel.findByIdAndUpdate(
          id_user,
          { $push: { activities: id_activities } },
@@ -128,8 +129,6 @@ export class UsersService {
        user.activities = user.activities.map(id => id.toString());
 
        for (const activity of user.activities) {
-          console.log(activity);
-          console.log(user.activities);
          if (activity == id_activities) {
             return;
          }

@@ -126,7 +126,6 @@ export class ActivitiesService {
          const activities = await this._ActivitiesModel.findById(users_activities);
          if (!activities) {
              await this.UsersService.delActivities(user._id, users_activities);
-
          } else {
              if (datdeb < activities.datfin && datfin > activities.datfin) {
                  throw new ConflictException({
