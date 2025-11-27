@@ -20,6 +20,7 @@ export async function login(username, password){
       if (!data.error) {
          const storedUserId = await AsyncStorage.getItem("user_id");
          if (data.user_Id !== storedUserId) {
+            console.log("Ancien utilisateur", storedUserId);
             delete_all()
             await AsyncStorage.removeItem("unsubscribe");
             await AsyncStorage.removeItem("delete");

@@ -34,6 +34,7 @@ export default function LoginScreen() {
          if (response.error) {
             setError(`Erreur ${response.statusCode} : ${response.message}`);
          } else {
+
             if (await AsyncStorage.getItem('isAdmin') === 'true') {
                await AsyncStorage.setItem('log','true');
                router.replace('/admin');
