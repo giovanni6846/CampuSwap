@@ -160,6 +160,7 @@ export class ActivitiesService {
          throw new InternalServerErrorException('Erreur lors de la création');
       }
 
+      console.log(activities_created[0]._id);
        await this.UsersService.addActivities(user_created, activities_created[0]._id);
 
       return {

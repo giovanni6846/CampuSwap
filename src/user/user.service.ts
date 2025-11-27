@@ -126,6 +126,8 @@ export class UsersService {
       }
 
       for (const activity of user.activities) {
+          console.log(activity);
+          console.log(user.activities);
          if (activity == id_activities) {
             return;
          }
