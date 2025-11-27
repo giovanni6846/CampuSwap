@@ -3,7 +3,10 @@ import { View, Text, TextInput, Alert, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import Toast from "react-native-root-toast";
 import { create_activities } from "../functions/Create_activities";
-import formStyles from "../styles/create/styles_create"; // ⚠️ On va créer ce style
+import formStyles from "../styles/create/styles_create";
+import {Test} from "../functions/Test";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Sync} from "../functions/Sync"; // ⚠️ On va créer ce style
 
 export default function CreateEventScreen() {
 
@@ -61,6 +64,13 @@ export default function CreateEventScreen() {
             backgroundColor: '#e74c3c',
             textColor: 'white',
         });
+
+        await Test();
+        if (await AsyncStorage.getItem('connected') === 'true') {
+            if (await AsyncStorage.getItem('log') === 'true') {
+                await Sync();
+            }
+        }
 
         router.replace('/menu');
     };
