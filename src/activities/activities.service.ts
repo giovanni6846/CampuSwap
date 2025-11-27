@@ -124,19 +124,16 @@ export class ActivitiesService {
         }*/
       for (const users_activities of user.activities) {
          const activities = await this._ActivitiesModel.findById(users_activities);
-        console.log(users_activities);
-        console.log(activities);
          if (!activities) {
-            throw new NotFoundException({
-               message: "L'activité utilisateur est indisponible",
-            });
-         }
+             await this.UsersService.delActivities(user._id, users_activities);
 
-         if (datdeb < activities.datfin && datfin > activities.datfin) {
-            throw new ConflictException({
-               message:
-                  'Vous avez déjà une activité de réserver sur ce crénaux, création impossible',
-            });
+         } else {
+             if (datdeb < activities.datfin && datfin > activities.datfin) {
+                 throw new ConflictException({
+                     message:
+                         'Vous avez déjà une activité de réserver sur ce crénaux, création impossible',
+                 });
+             }
          }
       }
 
