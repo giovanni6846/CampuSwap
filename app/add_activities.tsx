@@ -65,13 +65,6 @@ export default function CreateEventScreen() {
             textColor: 'white',
         });
 
-        await Test();
-        if (await AsyncStorage.getItem('connected') === 'true') {
-            if (await AsyncStorage.getItem('log') === 'true') {
-                await Sync();
-            }
-        }
-
         router.replace('/menu');
     };
 

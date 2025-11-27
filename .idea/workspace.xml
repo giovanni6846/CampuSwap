@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ceec179-7f18-45b3-88a2-1aaf1b96fdaf" name="Changes" comment="Fin de mise en production">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/add_activities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/add_activities.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +126,7 @@
       <workItem from="1764144290491" duration="7241000" />
       <workItem from="1764160933398" duration="251000" />
       <workItem from="1764161191123" duration="9145000" />
-      <workItem from="1764231610867" duration="1372000" />
+      <workItem from="1764231610867" duration="3235000" />
     </task>
     <task id="LOCAL-00001" summary="Ecran de login + Menu + MVP 1">
       <option name="closed" value="true" />
@@ -481,7 +480,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764169118352</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Fin de mise en production">
+      <option name="closed" value="true" />
+      <created>1764234609054</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1764234609054</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
