@@ -109,6 +109,9 @@ export class ActivitiesService {
       seat: string,
       user_created: string,
    ): Promise<CreationResponseDto> {
+
+       console.log(name, datdeb, datfin, description, seat, user_created);
+
       const user = await this.UsersService.findUser(user_created);
 
       if (!user) {
@@ -137,12 +140,12 @@ export class ActivitiesService {
       }
 
       await this._ActivitiesModel.create({
-         datdeb: datdeb,
-         datfin: datfin,
+         datdeb: new Date(datdeb),
+         datfin: new Date(datfin),
          description: description,
          name: name,
          seat: seat,
-         user_created: user_created,
+         user_created: user_created.toString(),
       });
 
       const filter: any = {};

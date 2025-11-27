@@ -3,7 +3,9 @@ import { HydratedDocument, Types } from 'mongoose';
 
 export type ActivitiesDocument = HydratedDocument<Activities>;
 
-@Schema()
+@Schema({
+    versionKey: false
+})
 export class Activities {
    @Prop({ required: true })
    name!: string;
